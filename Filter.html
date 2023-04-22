@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./vender/angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+        <div ng-controller="myController">
+            <h1>Sắp xếp danh sách với filter orderby</h1>
+            <ul>
+                <li ng-repeat="item in list | orderBy: 'quocgia'">
+                    {{item.ten + ',' + item.quocgia}}
+                </li>
+            </ul>
+            <h1>Dùng filter để lọc theo kí tự 'm'</h1>
+            <ul>
+                <li ng-repeat="item in list | filter: 'm'">
+                    {{item.ten + ',' + item.quocgia}}
+                </li>
+            </ul>
+            <h1>Dùng filter để lọc theo giá trị được nhập</h1>
+            <input
+                type="text"
+                name="nameInput"
+                id="nameInput"
+                ng-model="nameInput"
+                placeholder="Nhập tên"
+            />
+            <ul>
+                <li ng-repeat="item in list | filter: nameInput">
+                    {{item.ten + ',' + item.quocgia}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('myController', function ($scope) {
+            $scope.list = [
+                { ten: 'dlo', quocgia: 'd' },
+                { ten: 'alo', quocgia: 'a' },
+                { ten: 'blo', quocgia: 'b' },
+                { ten: 'clo', quocgia: 'c' },
+                { ten: 'mlo', quocgia: 'm' },
+            ];
+        });
+    </script>
+</html>
