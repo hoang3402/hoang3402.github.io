@@ -20,7 +20,12 @@ input {
     list-style: none;
 }
 
-.controller {
+.AngularJS {
     display: flex;
     flex-direction: column;
+}
+
+a {
+    font-size: large;
+    text-decoration: none;
 }
