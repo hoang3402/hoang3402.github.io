@@ -1,3 +1,5 @@
+angular.module("app", []);
+
 angular.module("app").component("todoApp", {
     templateUrl: "../components/todoApp.html",
     controller: function () {
