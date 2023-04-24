@@ -19,3 +19,8 @@ input {
 .unstyled {
     list-style: none;
 }
+
+.controller {
+    display: flex;
+    flex-direction: column;
+}
