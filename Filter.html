@@ -6,46 +6,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="./vender/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        />
     </head>
     <body ng-app="app">
         <div ng-controller="myController">
-            <h1>Sắp xếp danh sách với filter orderby</h1>
-            <ul>
-                <li ng-repeat="item in list | orderBy: 'quocgia'">
-                    {{item.ten + ',' + item.quocgia}}
-                </li>
-            </ul>
-            <h1>Dùng filter để lọc theo kí tự 'm'</h1>
-            <ul>
-                <li ng-repeat="item in list | filter: 'm'">
-                    {{item.ten + ',' + item.quocgia}}
-                </li>
-            </ul>
-            <h1>Dùng filter để lọc theo giá trị được nhập</h1>
-            <input
-                type="text"
-                name="nameInput"
-                id="nameInput"
-                ng-model="nameInput"
-                placeholder="Nhập tên"
-            />
-            <ul>
-                <li ng-repeat="item in list | filter: nameInput">
-                    {{item.ten + ',' + item.quocgia}}
-                </li>
-            </ul>
+            <h1>Dùng $http get để lấy data từ api và hiển thị</h1>
+            <p>
+                API:
+                <a href="https://jsonplaceholder.typicode.com/users"
+                    >https://jsonplaceholder.typicode.com/users</a
+                >
+            </p>
+            <input type="text" placeholder="Tìm kiếm" ng-model="searchInput" />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" ng-click="OrderBy('id')">ID</th>
+                        <th scope="col" ng-click="OrderBy('name')">Name</th>
+                        <th scope="col" ng-click="OrderBy('username')">
+                            Username
+                        </th>
+                        <th scope="col" ng-click="OrderBy('email')">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        ng-repeat="item in data | orderBy:order | filter:searchInput"
+                    >
+                        <th>{{item.id}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.username}}</td>
+                        <td>{{item.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
-    <script>
-        var app = angular.module('app', []);
-        app.controller('myController', function ($scope) {
-            $scope.list = [
-                { ten: 'dlo', quocgia: 'd' },
-                { ten: 'alo', quocgia: 'a' },
-                { ten: 'blo', quocgia: 'b' },
-                { ten: 'clo', quocgia: 'c' },
-                { ten: 'mlo', quocgia: 'm' },
-            ];
-        });
-    </script>
+    <script src="./js/filter.js"></script>
 </html>
