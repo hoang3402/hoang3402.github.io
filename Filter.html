@@ -60,8 +60,8 @@
                             <input
                                 ng-show="editingUser === item.id"
                                 type="text"
-                                ng-model="user.name"
-                                placeholder="{{item.name}}"
+                                ng-model="item.name"
+                                value=""
                             />
                         </td>
                         <td>
@@ -71,8 +71,8 @@
                             <input
                                 ng-show="editingUser === item.id"
                                 type="text"
-                                ng-model="user.username"
-                                placeholder="{{item.username}}"
+                                ng-model="item.username"
+                                value=""
                             />
                         </td>
                         <td>
@@ -81,9 +81,9 @@
                             </p>
                             <input
                                 ng-show="editingUser === item.id"
-                                type="text"
-                                ng-model="user.email"
-                                placeholder="{{item.email}}"
+                                type="email"
+                                ng-model="item.email"
+                                value=""
                             />
                         </td>
                         <td>
@@ -92,9 +92,20 @@
                                 value="submit"
                                 class="btn btn-success btn-sm"
                                 ng-click="handleRepair(item.id)"
+                                ng-show="editingUser !== item.id"
                             >
                                 <i class="fa fa-pencil"></i>
                                 Sửa
+                            </button>
+                            <button
+                                type="submit"
+                                value="submit"
+                                class="btn btn-success btn-sm"
+                                ng-click="handleRepairDone(item)"
+                                ng-show="editingUser === item.id"
+                            >
+                                <i class="fa fa-check"></i>
+                                Xác nhận
                             </button>
                             <button
                                 type="submit"

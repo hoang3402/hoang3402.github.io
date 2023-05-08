@@ -28,6 +28,13 @@ app.controller('myController', function ($scope, $http) {
         $scope.editUser(id);
     }
 
+    $scope.handleRepairDone = function (user) {
+        console.log(`Hoàn thành nhập dữ liệu cho ${user.id}`);
+
+
+        $scope.editUser(false);
+    }
+
     $scope.handleDelete = function (id) {
         console.log(`Đang xoá: ${id}`)
 
