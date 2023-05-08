@@ -11,16 +11,30 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
         />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
     </head>
     <body ng-app="app">
         <div ng-controller="myController">
-            <h1>Dùng $http get để lấy data từ api và hiển thị</h1>
-            <p>
-                API:
-                <a href="https://jsonplaceholder.typicode.com/users"
-                    >https://jsonplaceholder.typicode.com/users</a
-                >
-            </p>
+            <header>
+                <h1>Dùng $http get để lấy data từ api và hiển thị</h1>
+                <p>
+                    API:
+                    <a href="https://jsonplaceholder.typicode.com/users"
+                        >https://jsonplaceholder.typicode.com/users</a
+                    >
+                </p>
+            </header>
+
+            <div class="formCreateNewUser">
+                <button class="btn">Create new user</button>
+            </div>
+
             <input type="text" placeholder="Tìm kiếm" ng-model="searchInput" />
             <table class="table">
                 <thead>
@@ -31,6 +45,7 @@
                             Username
                         </th>
                         <th scope="col" ng-click="OrderBy('email')">Email</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,9 +53,59 @@
                         ng-repeat="item in data | orderBy:order | filter:searchInput"
                     >
                         <th>{{item.id}}</th>
-                        <td>{{item.name}}</td>
-                        <td>{{item.username}}</td>
-                        <td>{{item.email}}</td>
+                        <td>
+                            <p ng-show="editingUser !== item.id">
+                                {{item.name}}
+                            </p>
+                            <input
+                                ng-show="editingUser === item.id"
+                                type="text"
+                                ng-model="user.name"
+                                placeholder="{{item.name}}"
+                            />
+                        </td>
+                        <td>
+                            <p ng-show="editingUser !== item.id">
+                                {{item.username}}
+                            </p>
+                            <input
+                                ng-show="editingUser === item.id"
+                                type="text"
+                                ng-model="user.username"
+                                placeholder="{{item.username}}"
+                            />
+                        </td>
+                        <td>
+                            <p ng-show="editingUser !== item.id">
+                                {{item.email}}
+                            </p>
+                            <input
+                                ng-show="editingUser === item.id"
+                                type="text"
+                                ng-model="user.email"
+                                placeholder="{{item.email}}"
+                            />
+                        </td>
+                        <td>
+                            <button
+                                type="submit"
+                                value="submit"
+                                class="btn btn-success btn-sm"
+                                ng-click="handleRepair(item.id)"
+                            >
+                                <i class="fa fa-pencil"></i>
+                                Sửa
+                            </button>
+                            <button
+                                type="submit"
+                                value="submit"
+                                class="btn btn-danger btn-sm"
+                                ng-click="handleDelete(item.id)"
+                            >
+                                <i class="fa fa-trash"></i>
+                                Xoá
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
