@@ -20,19 +20,19 @@ app.controller('myController', function ($scope, $http) {
         $scope.order = item;
     }
 
-    $scope.handleRepair = function (id) {
-        if (id == $scope.editingUser) {
+    $scope.handleEdit = function (user) {
+        if (user.id == $scope.editingUser) {
             return;
         }
-        console.log(`Đang chỉnh sửa: ${id}`);
-        $scope.editUser(id);
+        console.log(`Đang chỉnh sửa: ${user.id}`);
+        $scope.editUser(user.id);
+        $scope.editItem = user;
     }
 
-    $scope.handleRepairDone = function (user) {
+    $scope.handleEditDone = function (user) {
         console.log(`Hoàn thành nhập dữ liệu cho ${user.id}`);
-
-
         $scope.editUser(false);
+        resetInput();
     }
 
     $scope.handleDelete = function (id) {
@@ -47,4 +47,46 @@ app.controller('myController', function ($scope, $http) {
             }
         })
     }
+
+    $scope.handleAddNewUser = function () {
+        var id = $scope.userIdNew
+        var name = $scope.userNameNew
+        var username = $scope.userUsernameNew
+        var email = $scope.userEmailNew
+
+        if (id == '' || id == undefined ||
+            name == '' || name == undefined ||
+            username == '' || username == undefined ||
+            email == '' || email == undefined
+        ) {
+            alert('Không được để trống')
+            return;
+        }
+
+        for (let i = 0; i < $scope.data.length; i++) {
+            if ($scope.data[i].id == id) {
+                alert(`ID: ${id} đã có người khác sử dụng!`)
+                return;
+            }
+        }
+
+        $scope.data.push({
+            id: id,
+            name: name,
+            username: username,
+            email: email,
+        })
+
+        alert("Thêm thành công!")
+
+        resetInput();
+    }
+
+    function resetInput() {
+        $scope.userIdNew = '';
+        $scope.userNameNew = '';
+        $scope.userUsernameNew = '';
+        $scope.userEmailNew = '';
+    }
+
 });
