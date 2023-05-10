@@ -53,6 +53,8 @@ app.controller('myController', function ($scope, $http) {
         var name = $scope.userNameNew
         var username = $scope.userBirthdayNew
         var email = $scope.userEmailNew
+        var facebook = $scope.userFacebookNew
+        var phoneNumber = $scope.userPhoneNumberNew
 
         if (name == '' || name == undefined ||
             username == '' || username == undefined ||
@@ -74,6 +76,8 @@ app.controller('myController', function ($scope, $http) {
             Name: name,
             Birthday: Birthday,
             Email: email,
+            Facebook: facebook,
+            PhoneNumber: phoneNumber
         })
 
         alert("Thêm thành công!")
