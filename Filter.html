@@ -114,6 +114,44 @@
                             ng-show="editingUser === editItem.Id"
                         />
                     </div>
+                    <div class="form-group">
+                        <label for="Facebook">Facebook:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="Facebook"
+                            placeholder="Enter Facebook"
+                            ng-model="userFacebookNew"
+                            ng-show="editingUser !== editItem.Id"
+                        />
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="Facebook"
+                            placeholder="Enter Facebook"
+                            ng-model="editItem.Facebook"
+                            ng-show="editingUser === editItem.Id"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneNumber">PhoneNumber:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="PhoneNumber"
+                            placeholder="Enter PhoneNumber"
+                            ng-model="userPhoneNumberNew"
+                            ng-show="editingUser !== editItem.Id"
+                        />
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="PhoneNumber"
+                            placeholder="Enter PhoneNumber"
+                            ng-model="editItem.PhoneNumber"
+                            ng-show="editingUser === editItem.Id"
+                        />
+                    </div>
                     <button
                         type="submit"
                         class="btn btn-primary"
@@ -142,12 +180,18 @@
             <table class="table container">
                 <thead>
                     <tr>
-                        <th scope="col" ng-click="OrderBy('id')">ID</th>
-                        <th scope="col" ng-click="OrderBy('name')">Name</th>
-                        <th scope="col" ng-click="OrderBy('username')">
-                            Username
+                        <th scope="col" ng-click="OrderBy('Id')">ID</th>
+                        <th scope="col" ng-click="OrderBy('Name')">Name</th>
+                        <th scope="col" ng-click="OrderBy('Birthday')">
+                            Birthday
                         </th>
-                        <th scope="col" ng-click="OrderBy('email')">Email</th>
+                        <th scope="col" ng-click="OrderBy('Email')">Email</th>
+                        <th scope="col" ng-click="OrderBy('Facebook')">
+                            Facebook
+                        </th>
+                        <th scope="col" ng-click="OrderBy('PhoneNumber')">
+                            PhoneNumber
+                        </th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -186,6 +230,28 @@
                                 ng-show="editingUser === item.Id"
                                 type="email"
                                 ng-model="item.Email"
+                                value=""
+                            />
+                        </td>
+                        <td>
+                            <p ng-show="editingUser !== item.Id">
+                                {{item.Facebook}}
+                            </p>
+                            <input
+                                ng-show="editingUser === item.Id"
+                                type="text"
+                                ng-model="item.Facebook"
+                                value=""
+                            />
+                        </td>
+                        <td>
+                            <p ng-show="editingUser !== item.Id">
+                                {{item.PhoneNumber}}
+                            </p>
+                            <input
+                                ng-show="editingUser === item.Id"
+                                type="text"
+                                ng-model="item.PhoneNumber"
                                 value=""
                             />
                         </td>
