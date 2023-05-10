@@ -45,15 +45,16 @@
                             id="ID"
                             placeholder="Enter ID"
                             ng-model="userIdNew"
-                            ng-show="editingUser !== editItem.id"
+                            ng-show="editingUser !== editItem.Id"
                         />
                         <input
                             type="text"
                             class="form-control"
                             id="ID"
                             placeholder="Enter ID"
-                            ng-model="editItem.id"
-                            ng-show="editingUser === editItem.id"
+                            ng-model="editItem.Id"
+                            ng-show="editingUser === editItem.Id"
+                            disabled
                         />
                     </div>
                     <div class="form-group">
@@ -64,15 +65,15 @@
                             id="Name"
                             placeholder="Enter Name"
                             ng-model="userNameNew"
-                            ng-show="editingUser !== editItem.id"
+                            ng-show="editingUser !== editItem.Id"
                         />
                         <input
                             type="text"
                             class="form-control"
                             id="Name"
                             placeholder="Enter Name"
-                            ng-model="editItem.name"
-                            ng-show="editingUser === editItem.id"
+                            ng-model="editItem.Name"
+                            ng-show="editingUser === editItem.Id"
                         />
                     </div>
                     <div class="form-group">
@@ -83,7 +84,7 @@
                             id="Birthday"
                             placeholder="Enter Birthday"
                             ng-model="userBirthdayNew"
-                            ng-show="editingUser !== editItem.id"
+                            ng-show="editingUser !== editItem.Id"
                         />
                         <input
                             type="text"
@@ -91,7 +92,7 @@
                             id="Birthday"
                             placeholder="Enter Birthday"
                             ng-model="editItem.Birthday"
-                            ng-show="editingUser === editItem.id"
+                            ng-show="editingUser === editItem.Id"
                         />
                     </div>
                     <div class="form-group">
@@ -102,22 +103,22 @@
                             id="Email"
                             placeholder="Enter Email"
                             ng-model="userEmailNew"
-                            ng-show="editingUser !== editItem.id"
+                            ng-show="editingUser !== editItem.Id"
                         />
                         <input
                             type="email"
                             class="form-control"
                             id="Email"
                             placeholder="Enter Email"
-                            ng-model="editItem.email"
-                            ng-show="editingUser === editItem.id"
+                            ng-model="editItem.Email"
+                            ng-show="editingUser === editItem.Id"
                         />
                     </div>
                     <button
                         type="submit"
                         class="btn btn-primary"
                         ng-click="handleAddNewUser()"
-                        ng-show="editingUser !== editItem.id"
+                        ng-show="editingUser !== editItem.Id"
                     >
                         Create New User
                     </button>
@@ -125,7 +126,7 @@
                         type="submit"
                         class="btn btn-primary"
                         ng-click="handleEditDone(editItem)"
-                        ng-show="editingUser === editItem.id"
+                        ng-show="editingUser === editItem.Id"
                     >
                         Update User
                     </button>
