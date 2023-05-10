@@ -1,4 +1,4 @@
-const API = 'https://jsonplaceholder.typicode.com/users';
+const API = 'https://hoang3409.alwaysdata.net/codeigniter/index.php/Welcome/GetListUser';
 
 var app = angular.module('app', []);
 app.controller('myController', function ($scope, $http) {
@@ -12,8 +12,8 @@ app.controller('myController', function ($scope, $http) {
     $http.get(API).
     then(function success(response) {
         $scope.data = response.data;
-    }, function failed() {
-        alert('Something went wrong!');
+    }, function failed(e) {
+        console.log(e);
     });
 
     $scope.OrderBy = function (item) {
@@ -21,16 +21,16 @@ app.controller('myController', function ($scope, $http) {
     }
 
     $scope.handleEdit = function (user) {
-        if (user.id == $scope.editingUser) {
+        if (user.Id == $scope.editingUser) {
             return;
         }
-        console.log(`Đang chỉnh sửa: ${user.id}`);
-        $scope.editUser(user.id);
+        console.log(`Đang chỉnh sửa: ${user.Id}`);
+        $scope.editUser(user.Id);
         $scope.editItem = user;
     }
 
     $scope.handleEditDone = function (user) {
-        console.log(`Hoàn thành nhập dữ liệu cho ${user.id}`);
+        console.log(`Hoàn thành nhập dữ liệu cho ${user.Id}`);
         $scope.editUser(false);
         resetInput();
     }
@@ -51,7 +51,7 @@ app.controller('myController', function ($scope, $http) {
     $scope.handleAddNewUser = function () {
         var id = $scope.userIdNew
         var name = $scope.userNameNew
-        var username = $scope.userUsernameNew
+        var username = $scope.userBirthdayNew
         var email = $scope.userEmailNew
 
         if (id == '' || id == undefined ||
@@ -64,17 +64,17 @@ app.controller('myController', function ($scope, $http) {
         }
 
         for (let i = 0; i < $scope.data.length; i++) {
-            if ($scope.data[i].id == id) {
+            if ($scope.data[i].Id == id) {
                 alert(`ID: ${id} đã có người khác sử dụng!`)
                 return;
             }
         }
 
         $scope.data.push({
-            id: id,
-            name: name,
-            username: username,
-            email: email,
+            Id: id,
+            Name: name,
+            Birthday: Birthday,
+            Email: email,
         })
 
         alert("Thêm thành công!")

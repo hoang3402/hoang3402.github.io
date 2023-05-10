@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="wIdth=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="./vender/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
@@ -76,21 +76,21 @@
                         />
                     </div>
                     <div class="form-group">
-                        <label for="Username">Username:</label>
+                        <label for="Birthday">Birthday:</label>
                         <input
                             type="text"
                             class="form-control"
-                            id="Username"
-                            placeholder="Enter Username"
-                            ng-model="userUsernameNew"
+                            id="Birthday"
+                            placeholder="Enter Birthday"
+                            ng-model="userBirthdayNew"
                             ng-show="editingUser !== editItem.id"
                         />
                         <input
                             type="text"
                             class="form-control"
-                            id="Username"
-                            placeholder="Enter Username"
-                            ng-model="editItem.username"
+                            id="Birthday"
+                            placeholder="Enter Birthday"
+                            ng-model="editItem.Birthday"
                             ng-show="editingUser === editItem.id"
                         />
                     </div>
@@ -154,37 +154,37 @@
                     <tr
                         ng-repeat="item in data | orderBy:order | filter:searchInput"
                     >
-                        <th>{{item.id}}</th>
+                        <th>{{item.Id}}</th>
                         <td>
-                            <p ng-show="editingUser !== item.id">
-                                {{item.name}}
+                            <p ng-show="editingUser !== item.Id">
+                                {{item.Name}}
                             </p>
                             <input
-                                ng-show="editingUser === item.id"
+                                ng-show="editingUser === item.Id"
                                 type="text"
-                                ng-model="item.name"
+                                ng-model="item.Name"
                                 value=""
                             />
                         </td>
                         <td>
-                            <p ng-show="editingUser !== item.id">
-                                {{item.username}}
+                            <p ng-show="editingUser !== item.Id">
+                                {{item.Birthday}}
                             </p>
                             <input
-                                ng-show="editingUser === item.id"
+                                ng-show="editingUser === item.Id"
                                 type="text"
-                                ng-model="item.username"
+                                ng-model="item.Birthday"
                                 value=""
                             />
                         </td>
                         <td>
-                            <p ng-show="editingUser !== item.id">
-                                {{item.email}}
+                            <p ng-show="editingUser !== item.Id">
+                                {{item.Email}}
                             </p>
                             <input
-                                ng-show="editingUser === item.id"
+                                ng-show="editingUser === item.Id"
                                 type="email"
-                                ng-model="item.email"
+                                ng-model="item.Email"
                                 value=""
                             />
                         </td>
@@ -194,7 +194,7 @@
                                 value="submit"
                                 class="btn btn-success btn-sm"
                                 ng-click="handleEdit(item)"
-                                ng-show="editingUser !== item.id"
+                                ng-show="editingUser !== item.Id"
                             >
                                 <i class="fa fa-pencil"></i>
                                 Sửa
@@ -204,7 +204,7 @@
                                 value="submit"
                                 class="btn btn-success btn-sm"
                                 ng-click="handleEditDone(item)"
-                                ng-show="editingUser === item.id"
+                                ng-show="editingUser === item.Id"
                             >
                                 <i class="fa fa-check"></i>
                                 Xác nhận
@@ -213,7 +213,7 @@
                                 type="submit"
                                 value="submit"
                                 class="btn btn-danger btn-sm"
-                                ng-click="handleDelete(item.id)"
+                                ng-click="handleDelete(item.Id)"
                             >
                                 <i class="fa fa-trash"></i>
                                 Xoá
