@@ -54,8 +54,7 @@ app.controller('myController', function ($scope, $http) {
         var username = $scope.userBirthdayNew
         var email = $scope.userEmailNew
 
-        if (id == '' || id == undefined ||
-            name == '' || name == undefined ||
+        if (name == '' || name == undefined ||
             username == '' || username == undefined ||
             email == '' || email == undefined
         ) {
