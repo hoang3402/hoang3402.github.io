@@ -1,4 +1,4 @@
-const API = 'https://hoang3409.alwaysdata.net/codeigniter/index.php/Welcome/GetListUser';
+const API = 'https://hoang3409.alwaysdata.net/codeigniter/index.php/Welcome';
 
 var app = angular.module('app', []);
 app.controller('myController', function ($scope, $http) {
@@ -9,7 +9,7 @@ app.controller('myController', function ($scope, $http) {
         $scope.editingUser = id;
     }
 
-    $http.get(API).
+    $http.get(`${API}/GetListUser`).
     then(function success(response) {
         $scope.data = response.data;
     }, function failed(e) {
@@ -46,6 +46,12 @@ app.controller('myController', function ($scope, $http) {
                 return;
             }
         })
+
+        // Call API
+        $http.get(`${API}/Delete/${id}`)
+            .then(function success(response) {
+                console.log('Success');
+            })
     }
 
     $scope.handleAddNewUser = function () {
