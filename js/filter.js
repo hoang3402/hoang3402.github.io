@@ -38,19 +38,20 @@ app.controller('myController', function ($scope, $http) {
     $scope.handleDelete = function (id) {
         console.log(`Đang xoá: ${id}`)
 
-        // Xoá trên giao diện
-        $scope.data.map((e, index) => {
-            if (e.id == id) {
-                $scope.data.splice(index, 1)
-                console.log(`Đã xoá: ${id}`);
-                return;
-            }
-        })
-
         // Call API
         $http.get(`${API}/Delete/${id}`)
             .then(function success(response) {
                 console.log('Success');
+                // Xoá trên giao diện
+                $scope.data.map((e, index) => {
+                    if (e.id == id) {
+                        $scope.data.splice(index, 1)
+                        console.log(`Đã xoá: ${id}`);
+                        return;
+                    }
+                }, function failed(response) {
+                    console.log("Failed: ", response);
+                })
             })
     }
 
