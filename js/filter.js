@@ -9,12 +9,16 @@ app.controller('myController', function ($scope, $http) {
         $scope.editingUser = id;
     }
 
-    $http.get(`${API}/GetListUser`).
-    then(function success(response) {
-        $scope.data = response.data;
-    }, function failed(e) {
-        console.log(e);
-    });
+    $scope.getListUser = function () {
+        $http.get(`${API}/GetListUser`).
+        then(function success(response) {
+            $scope.data = response.data;
+        }, function failed(e) {
+            console.log(e);
+        });
+    }
+
+    $scope.getListUser();
 
     $scope.OrderBy = function (item) {
         $scope.order = item;
@@ -58,13 +62,12 @@ app.controller('myController', function ($scope, $http) {
     $scope.handleAddNewUser = function () {
         var id = $scope.userIdNew
         var name = $scope.userNameNew
-        var username = $scope.userBirthdayNew
+        var birthday = $scope.userBirthdayNew
         var email = $scope.userEmailNew
         var facebook = $scope.userFacebookNew
         var phoneNumber = $scope.userPhoneNumberNew
 
         if (name == '' || name == undefined ||
-            username == '' || username == undefined ||
             email == '' || email == undefined
         ) {
             alert('Không được để trống')
@@ -78,25 +81,35 @@ app.controller('myController', function ($scope, $http) {
             }
         }
 
-        $scope.data.push({
-            Id: id,
-            Name: name,
-            Birthday: Birthday,
-            Email: email,
-            Facebook: facebook,
-            PhoneNumber: phoneNumber
-        })
+        $http({
+                url: `${API}/AddNewUser`,
+                method: 'POST',
+                data: {
+                    "Name": name,
+                    "Birthday": birthday,
+                    "Email": email,
+                    "Facebook": facebook,
+                    "PhoneNumber": phoneNumber,
+                }
+            })
+            .then(function success() {
+                console.log("Thêm thành công!")
 
-        alert("Thêm thành công!")
+                $scope.getListUser();
 
-        resetInput();
+                resetInput();
+            }, function failed(response) {
+                console.log("Failed: ", response)
+            })
     }
 
     function resetInput() {
         $scope.userIdNew = '';
         $scope.userNameNew = '';
-        $scope.userUsernameNew = '';
+        $scope.userBirthdayNew = '';
         $scope.userEmailNew = '';
+        $scope.userFacebookNew = '';
+        $scope.userPhoneNumberNew = '';
     }
 
 });
