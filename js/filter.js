@@ -54,17 +54,12 @@ app.controller('myController', function ($scope, $http) {
 
     $scope.handleAddNewUser = function () {
         var id = $scope.userIdNew
-        var name = $scope.userNameNew
-        var birthday = $scope.userBirthdayNew
-        var email = $scope.userEmailNew
-        var facebook = $scope.userFacebookNew
-        var phoneNumber = $scope.userPhoneNumberNew
 
-        if (name == '' || name == undefined ||
-            birthday == '' || birthday == undefined ||
-            facebook == '' || facebook == undefined ||
-            phoneNumber == '' || phoneNumber == undefined ||
-            email == '' || email == undefined
+        if ($scope.userNameNew == undefined ||
+            $scope.userBirthdayNew == undefined ||
+            $scope.userEmailNew == undefined ||
+            $scope.userFacebookNew == undefined ||
+            $scope.userPhoneNumberNew == undefined
         ) {
             alert('Không được để trống')
             return;
@@ -81,11 +76,11 @@ app.controller('myController', function ($scope, $http) {
                 url: `${API}/AddNewUser`,
                 method: 'POST',
                 data: {
-                    "Name": name,
-                    "Birthday": birthday,
-                    "Email": email,
-                    "Facebook": facebook,
-                    "PhoneNumber": phoneNumber,
+                    "Name": $scope.userNameNew,
+                    "Birthday": $scope.userBirthdayNew,
+                    "Email": $scope.userEmailNew,
+                    "Facebook": $scope.userFacebookNew,
+                    "PhoneNumber": $scope.userPhoneNumberNew,
                 }
             })
             .then(function success() {
