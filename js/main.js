@@ -93,9 +93,22 @@
     /*------------------
         Scroll To Top
     --------------------*/
-    $("#scrollToTopButton").click(function() {
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+    $("#scrollToTopButton").click(function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
         return false;
-     });
+    });
 
 })(jQuery);
+
+angular.module('myApp', []).component('productItem', {
+    templateUrl: '../components/product_item/product_item.html',
+    bindings: {
+        name: '@',
+        url: '@',
+        comment: '@',
+        view: '@',
+        genres: '@'
+    },
+});

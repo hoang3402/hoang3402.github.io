@@ -53,7 +53,7 @@
         <link rel="stylesheet" href="../styles/css/style.css" type="text/css" />
     </head>
 
-    <body>
+    <body ng-app="myApp">
         <!-- Page Preloder -->
         <div id="preloder">
             <div class="loader"></div>
@@ -238,33 +238,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6">
-                                    <div class="product__item">
-                                        <div
-                                            class="product__item__pic set-bg"
-                                            data-setbg="../assets/img/trending/trend-1.jpg"
-                                        >
-                                            <div class="ep">18 / 18</div>
-                                            <div class="comment">
-                                                <i class="fa fa-comments"></i>
-                                                11
-                                            </div>
-                                            <div class="view">
-                                                <i class="fa fa-eye"></i> 9141
-                                            </div>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <ul>
-                                                <li>Active</li>
-                                                <li>Movie</li>
-                                            </ul>
-                                            <h5>
-                                                <a href="#"
-                                                    >The Seven Deadly Sins:
-                                                    Wrath of the Gods</a
-                                                >
-                                            </h5>
-                                        </div>
-                                    </div>
+                                    <product-item
+                                        name="123"
+                                        url="../assets/img/trending/trend-1.jpg"
+                                    ></product-item>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
@@ -1281,7 +1258,7 @@
         <script src="../js/mixitup.min.js"></script>
         <script src="../js/jquery.slicknav.js"></script>
         <script src="../js/owl.carousel.min.js"></script>
-        <script src="../js/main.js"></script>
         <script src="../js/angular.min.js"></script>
+        <script src="../js/main.js"></script>
     </body>
 </html>
