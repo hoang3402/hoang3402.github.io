@@ -63,7 +63,7 @@
     });
 })(jQuery);
 
-angular.module('myApp', [])
+angular.module('myApp', ['ngRoute'])
     .component('productItem', {
         templateUrl: '../components/product_item/product_item.html',
         bindings: {
@@ -91,4 +91,12 @@ angular.module('myApp', [])
         templateUrl: '../components/footer/fotter.html'
     }).component('search', {
         templateUrl: '../components/search/search.html'
+    }).config(function ($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/login', {
+                templateUrl: '../views/login.html'
+            })
+            .otherwise({
+                template: '<hero-slider></hero-slider> <product-section></product-section>'
+            });
     });
