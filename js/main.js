@@ -89,4 +89,6 @@ angular.module('myApp', [])
         templateUrl: '../components/product_section/product_section.html'
     }).component('footerCustoms', {
         templateUrl: '../components/footer/fotter.html'
+    }).component('search', {
+        templateUrl: '../components/search/search.html'
     });
