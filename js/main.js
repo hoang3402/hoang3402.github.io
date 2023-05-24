@@ -51,17 +51,9 @@
         Niceselect
     --------------------*/
     $('select').niceSelect();
-
-    /*------------------
-        Scroll To Top
-    --------------------*/
-    $("#scrollToTopButton").click(function () {
-        $("html, body").animate({
-            scrollTop: 0
-        }, "slow");
-        return false;
-    });
 })(jQuery);
+
+// Angular
 
 angular.module('myApp', ['ngRoute'])
     .component('productItem', {
@@ -95,6 +87,8 @@ angular.module('myApp', ['ngRoute'])
         $routeProvider
             .when('/login', {
                 templateUrl: '../views/login.html'
+            }).when('/signup', {
+                templateUrl: '../views/signup.html'
             })
             .otherwise({
                 template: '<hero-slider></hero-slider> <product-section></product-section>'
