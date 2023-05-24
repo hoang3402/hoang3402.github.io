@@ -32,43 +32,11 @@
     });
 
     /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
-
-
-
-    /*------------------
 		Navigation
 	--------------------*/
     $('.mobile-menu').slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true,
-    });
-
-    /*------------------
-		Hero Slider
-	--------------------*/
-    var hero_s = $('.hero__slider');
-    hero_s.owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: true,
-        nav: true,
-        navText: [
-            "<span class='arrow_carrot-left'></span>",
-            "<span class='arrow_carrot-right'></span>",
-        ],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        mouseDrag: false,
     });
 
     /*------------------
@@ -93,7 +61,6 @@
         }, "slow");
         return false;
     });
-
 })(jQuery);
 
 angular.module('myApp', [])
@@ -112,4 +79,14 @@ angular.module('myApp', [])
             name: '@',
             url: '@',
         },
+    }).component('heroSlider', {
+        templateUrl: '../components/hero_slider/hero_slider.html',
+        bindings: {
+            name: '@',
+            url: '@',
+        },
+    }).component('productSection', {
+        templateUrl: '../components/product_section/product_section.html'
+    }).component('footerCustoms', {
+        templateUrl: '../components/footer/fotter.html'
     });
