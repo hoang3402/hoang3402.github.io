@@ -71,3 +71,18 @@
 <!-- Header End -->
 
 <search></search>
+
+<script>
+    /*------------------
+    	Navigation
+    --------------------*/
+    $('.mobile-menu').slicknav({
+        prependTo: '#mobile-menu-wrap',
+        allowParentLinks: true,
+    });
+
+    $('.header__menu li').click(function () {
+        $('.header__menu li').removeClass('active');
+        $(this).addClass('active');
+    });
+</script>

@@ -934,4 +934,17 @@
         var bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
     });
+
+    /*------------------
+            Filter
+    --------------------*/
+    $('.filter__controls li').on('click', function () {
+        $('.filter__controls li').removeClass('active');
+        $(this).addClass('active');
+        console.log('hello');
+    });
+    if ($('.filter__gallery').length > 0) {
+        var containerEl = document.querySelector('.filter__gallery');
+        var mixer = mixitup(containerEl);
+    }
 </script>
