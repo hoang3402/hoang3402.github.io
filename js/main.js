@@ -67,6 +67,9 @@
     app.component('animeDetailsContent', {
         templateUrl: '../components/anime_details_content/anime_details_content.html'
     })
+    app.component('animeTopViews', {
+        templateUrl: '../components/anime_top_views/anime_top_views.html'
+    })
     app.component('heroItem', {
         templateUrl: '../components/hero_slider/hero_items.html',
         bindings: {
