@@ -63,7 +63,15 @@
             templateUrl: '../components/footer/fotter.html'
         }).component('search', {
             templateUrl: '../components/search/search.html'
-        }).config(function ($routeProvider, $locationProvider) {
+        }).component('heroItem', {
+            templateUrl: '../components/hero_slider/hero_items.html',
+            bindings: {
+                idMovie: '@',
+                name: '@',
+                linkImage: '@',
+                description: '@',
+            }
+        }).config(function ($routeProvider) {
             $routeProvider
                 .when('/login', {
                     templateUrl: '../views/login.html',
@@ -73,9 +81,11 @@
                     controller: '',
                 }).when('/blog', {
                     templateUrl: '../views/blog.html'
+                }).when('/categories', {
+                    templateUrl: '../views/categories.html'
                 })
                 .otherwise({
-                    template: '<hero-slider></hero-slider> <product-section></product-section>'
+                    template: '<hero-slider></hero-slider> <product-section></product-section>',
                 });
         });
 })(jQuery);
