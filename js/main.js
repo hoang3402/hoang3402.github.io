@@ -18,13 +18,7 @@
         $("#preloder").delay(200).fadeOut("slow");
     });
 
-    /*------------------
-        Video Player
-    --------------------*/
-    const player = new Plyr('#player', {
-        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'captions', 'settings', 'fullscreen'],
-        seekTime: 25
-    });
+
 
     /*------------------
         Niceselect
@@ -63,6 +57,8 @@
             templateUrl: '../components/footer/fotter.html'
         }).component('search', {
             templateUrl: '../components/search/search.html'
+        }).component('breadcrumb', {
+            templateUrl: '../components/breadcrumb/breadcrumb.html'
         }).component('heroItem', {
             templateUrl: '../components/hero_slider/hero_items.html',
             bindings: {
@@ -76,13 +72,25 @@
                 .when('/login', {
                     templateUrl: '../views/login.html',
                     controller: '',
-                }).when('/signup', {
+                })
+                .when('/signup', {
                     templateUrl: '../views/signup.html',
                     controller: '',
-                }).when('/blog', {
+                })
+                .when('/blog', {
                     templateUrl: '../views/blog.html'
-                }).when('/categories', {
+                })
+                .when('/categories', {
                     templateUrl: '../views/categories.html'
+                })
+                .when('/anime-details', {
+                    templateUrl: '../views/anime-details.html'
+                })
+                .when('/anime-watching', {
+                    templateUrl: '../views/anime-watching.html'
+                })
+                .when('/blog-details', {
+                    templateUrl: '../views/blog-details.html'
                 })
                 .otherwise({
                     template: '<hero-slider></hero-slider> <product-section></product-section>',
