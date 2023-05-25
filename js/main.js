@@ -37,7 +37,7 @@
 
     angular.module('myApp', ['ngRoute'])
         .component('productItem', {
-            templateUrl: '../components/product_item/product_item.html',
+            templateUrl: '../components/product_section/product_item.html',
             bindings: {
                 name: '@',
                 url: '@',

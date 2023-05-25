@@ -1,14 +1,11 @@
-<div
-    class="hero__items set-bg"
-    style="background-image: url({{$ctrl.linkImage}})"
->
+<div class="hero__items" style="background-image: url({{$ctrl.linkImage}})">
     <div class="row">
         <div class="col-lg-6">
             <div class="hero__text">
                 <h2>{{$ctrl.name}}</h2>
                 <p>{{$ctrl.description}}</p>
-                <a href="{{$ctrl.idMovie}}">
-                    <span>Watch Now</span>
+                <a href="#!anime-watching/{{$ctrl.idMovie}}">
+                    <span>Xem ngay</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
