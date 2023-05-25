@@ -18,8 +18,6 @@
         $("#preloder").delay(200).fadeOut("slow");
     });
 
-
-
     /*------------------
         Niceselect
     --------------------*/
@@ -28,7 +26,6 @@
     /*------------------
         Angular
     --------------------*/
-
     var app = angular.module('myApp', ['ngRoute']);
 
     app.component('productItem', {
@@ -66,6 +63,9 @@
     })
     app.component('breadcrumb', {
         templateUrl: '../components/breadcrumb/breadcrumb.html'
+    })
+    app.component('animeDetailsContent', {
+        templateUrl: '../components/anime_details_content/anime_details_content.html'
     })
     app.component('heroItem', {
         templateUrl: '../components/hero_slider/hero_items.html',
