@@ -28,6 +28,19 @@
     --------------------*/
     var app = angular.module('myApp', ['ngRoute']);
 
+    app.controller("GetListAnime", function ($scope, $http) {
+        $http({
+                method: "GET",
+                url: "https://hoang3409.alwaysdata.net/index.php/Anime/GetList/6",
+            })
+            .then((res) => {
+                $scope.list = res.data;
+                console.log(`.then ~ res.data:`, res.data)
+            }, () => {
+                alert("Server bị gì rồi á");
+            })
+    })
+
     app.component('productItem', {
         templateUrl: '../components/product_section/product_item.html',
         bindings: {
@@ -53,7 +66,8 @@
         },
     })
     app.component('productSection', {
-        templateUrl: '../components/product_section/product_section.html'
+        templateUrl: '../components/product_section/product_section.html',
+        controller: "GetListAnime",
     })
     app.component('footerCustoms', {
         templateUrl: '../components/footer/footer.html'
