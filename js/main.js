@@ -50,6 +50,18 @@ app.controller("GetListAnime", function ($scope, $http) {
         })
 })
 
+app.controller("GetGenres", function ($scope, $http) {
+    $http({
+            method: "GET",
+            url: `${DOMAIN}/Anime/GetGenres`
+        })
+        .then((res) => {
+            $scope.genres = res.data;
+        }, (res) => {
+            console.log("Failed: ", res.data)
+        })
+})
+
 app.component('productItem', {
     templateUrl: '../components/product_section/product_item.html',
     bindings: {
@@ -62,6 +74,7 @@ app.component('productItem', {
 })
 app.component('headerCustoms', {
     templateUrl: '../components/header/header.html',
+    controller: "GetGenres",
     bindings: {
         name: '@',
         url: '@',
