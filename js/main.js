@@ -9,6 +9,8 @@
 
 'use strict';
 
+const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php';
+
 /*------------------
     Preloader
 --------------------*/
@@ -38,7 +40,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.controller("GetListAnime", function ($scope, $http) {
     $http({
             method: "GET",
-            url: "https://hoang3409.alwaysdata.net/index.php/Anime/GetList/6",
+            url: `${DOMAIN}/Anime/GetList/6`,
         })
         .then((res) => {
             $scope.list = res.data;
