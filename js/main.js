@@ -62,6 +62,10 @@ app.controller("GetGenres", function ($scope, $http) {
         })
 })
 
+app.controller("BlogDetail", function ($anchorScroll) {
+    $anchorScroll();
+})
+
 app.component('productItem', {
     templateUrl: '../components/product_section/product_item.html',
     bindings: {
@@ -138,7 +142,8 @@ app.config(function ($routeProvider) {
             templateUrl: '../views/anime-watching.html'
         })
         .when('/blog-details', {
-            templateUrl: '../views/blog-details.html'
+            templateUrl: '../views/blog-details.html',
+            controller: 'BlogDetail'
         })
         .otherwise({
             template: '<hero-slider></hero-slider> <product-section></product-section>',
