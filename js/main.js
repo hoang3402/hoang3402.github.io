@@ -11,8 +11,6 @@
 
 const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php';
 
-
-
 /*------------------
     Angular
 --------------------*/
@@ -193,9 +191,29 @@ app.controller("BlogDetail", function ($anchorScroll) {
     $anchorScroll();
 })
 
+app.controller("AnimeDetailsController", function ($scope, $routeParams, $anchorScroll, $http) {
+    $anchorScroll();
+    $scope.id = $routeParams.id;
+
+    $http({
+            method: "GET",
+            url: `${DOMAIN}/Anime/GetAnimeById/${$scope.id}`
+        })
+        .then((res) => {
+            var data = res.data[0];
+            $scope.title = data.title
+            $scope.linkImage = data.cover_image_url
+            $scope.description = data.description
+            $scope.views = data.views
+        })
+
+    console.log($scope);
+})
+
 app.component('productItem', {
     templateUrl: '../components/product_section/product_item.html',
     bindings: {
+        id: '@',
         name: '@',
         url: '@',
         comment: '@',
@@ -246,7 +264,7 @@ app.component('heroItem', {
         description: '@',
     }
 })
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/login', {
             templateUrl: '../views/login.html',
@@ -262,8 +280,9 @@ app.config(function ($routeProvider) {
         .when('/categories', {
             templateUrl: '../views/categories.html'
         })
-        .when('/anime-details', {
-            templateUrl: '../views/anime-details.html'
+        .when('/anime-details/:id', {
+            templateUrl: '../views/anime-details.html',
+            controller: 'AnimeDetailsController',
         })
         .when('/anime-watching', {
             templateUrl: '../views/anime-watching.html'
