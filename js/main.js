@@ -127,6 +127,11 @@ app.directive("navigation", function () {
                 $('.header__menu li').removeClass('active');
                 $(this).addClass('active');
             });
+
+            $('.header__logo a').click(function () {
+                $('.header__menu li').removeClass('active');
+                $('.header__menu li').first().addClass('active');
+            });
         }
     }
 })
