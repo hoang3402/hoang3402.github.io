@@ -1,5 +1,5 @@
 <!-- Search model Begin -->
-<div class="search-model">
+<div class="search-model" search-model>
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-switch">
             <i class="icon_close"></i>
@@ -13,19 +13,4 @@
         </form>
     </div>
 </div>
-
 <!-- Search model end -->
-<script>
-    /*------------------
-        Search model
-    --------------------*/
-    $('.search-switch').on('click', function () {
-        $('.search-model').fadeIn(400);
-    });
-
-    $('.search-close-switch').on('click', function () {
-        $('.search-model').fadeOut(400, function () {
-            $('#search-input').val('');
-        });
-    });
-</script>

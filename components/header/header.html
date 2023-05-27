@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="header__nav">
+                <div class="header__nav" navigation>
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active">
@@ -56,18 +56,3 @@
 <!-- Header End -->
 
 <search></search>
-
-<script>
-    /*------------------
-    	Navigation
-    --------------------*/
-    $('.mobile-menu').slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true,
-    });
-
-    $('.header__menu li').click(function () {
-        $('.header__menu li').removeClass('active');
-        $(this).addClass('active');
-    });
-</script>

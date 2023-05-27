@@ -1,4 +1,4 @@
-<div class="product__sidebar__view">
+<div class="product__sidebar__view" set-bg>
     <div class="section-title">
         <h5>Top Views</h5>
     </div>
@@ -76,26 +76,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    /*------------------
-            Filter
-    --------------------*/
-    $('.filter__controls li').on('click', function () {
-        $('.filter__controls li').removeClass('active');
-        $(this).addClass('active');
-        console.log('hello');
-    });
-    if ($('.filter__gallery').length > 0) {
-        var containerEl = document.querySelector('.filter__gallery');
-        var mixer = mixitup(containerEl);
-    }
-
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
-</script>
