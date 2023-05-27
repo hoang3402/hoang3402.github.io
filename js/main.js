@@ -282,7 +282,7 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when('/anime-details/:id', {
             templateUrl: '../views/anime-details.html',
-            controller: 'AnimeDetailsController',
+            // controller: 'AnimeDetailsController',
         })
         .when('/anime-watching', {
             templateUrl: '../views/anime-watching.html'
