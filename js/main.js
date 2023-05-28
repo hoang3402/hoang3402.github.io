@@ -162,6 +162,29 @@ app.directive("heroSlider", function () {
     }
 })
 
+app.directive("videoPlayer", function () {
+    return {
+        link: () => {
+            /*------------------
+                Video Player
+            --------------------*/
+            const player = new Plyr('#player', {
+                controls: [
+                    'play-large',
+                    'play',
+                    'progress',
+                    'current-time',
+                    'mute',
+                    'captions',
+                    'settings',
+                    'fullscreen',
+                ],
+                seekTime: 25,
+            });
+        }
+    }
+})
+
 app.controller("GetListAnime", function ($scope, $http) {
     $http({
             method: "GET",
@@ -206,8 +229,21 @@ app.controller("AnimeDetailsController", function ($scope, $routeParams, $anchor
             $scope.description = data.description
             $scope.views = data.views
         })
+})
 
-    console.log($scope);
+app.controller("AnimeWatchingController", function ($scope, $routeParams, $anchorScroll, $http) {
+    $anchorScroll();
+    $scope.id = $routeParams.id;
+
+    $http({
+            method: "GET",
+            url: `${DOMAIN}/Anime/GetFirstMovie/${$scope.id}`
+        })
+        .then((res) => {
+            var data = res.data[0];
+            $scope.title = data.title
+            $scope.url = data.video_url
+        })
 })
 
 app.component('productItem', {
@@ -284,7 +320,7 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '../views/anime-details.html',
             // controller: 'AnimeDetailsController',
         })
-        .when('/anime-watching', {
+        .when('/anime-watching/:id', {
             templateUrl: '../views/anime-watching.html'
         })
         .when('/blog-details', {
