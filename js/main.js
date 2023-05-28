@@ -233,16 +233,14 @@ app.controller("AnimeDetailsController", function ($scope, $routeParams, $anchor
 
 app.controller("AnimeWatchingController", function ($scope, $routeParams, $anchorScroll, $http) {
     $anchorScroll();
-    $scope.id = $routeParams.id;
-
+    $scope.animeId = $routeParams.animeId;
     $http({
             method: "GET",
-            url: `${DOMAIN}/Anime/GetFirstMovie/${$scope.id}`
+            url: `${DOMAIN}/Anime/GetMovies/${$scope.animeId}`
         })
         .then((res) => {
-            var data = res.data[0];
-            $scope.title = data.title
-            $scope.url = data.video_url
+            $scope.data = res.data;
+            $scope.url = res.data[$routeParams.id - 1].video_url;
         })
 })
 
@@ -275,6 +273,12 @@ app.component('heroSlider', {
 app.component('productSection', {
     templateUrl: '../components/product_section/product_section.html',
     controller: "GetListAnime",
+})
+app.component('animeDetailsEpisode', {
+    templateUrl: '../components/anime__details__episodes/anime_details_episodes.html',
+    bindings: {
+        listEp: '@',
+    }
 })
 app.component('footerCustoms', {
     templateUrl: '../components/footer/footer.html'
@@ -320,7 +324,7 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '../views/anime-details.html',
             // controller: 'AnimeDetailsController',
         })
-        .when('/anime-watching/:id', {
+        .when('/anime/:animeId/episode/:id', {
             templateUrl: '../views/anime-watching.html'
         })
         .when('/blog-details', {
