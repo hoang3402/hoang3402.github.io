@@ -9,11 +9,12 @@
 	</div>
 	<div class="product__item__text">
 		<ul>
-			<li>Active</li>
-			<li>Movie</li>
+			<li ng-repeat="item in $ctrl.genres.split(',')">{{item}}</li>
 		</ul>
 		<h5>
-			<a href="#!anime-details/{{$ctrl.id}}"> {{$ctrl.name}} </a>
+			<a href="#!anime-details/{{$ctrl.id}}">
+				<span> {{$ctrl.name}} </span>
+			</a>
 		</h5>
 	</div>
 </div>
