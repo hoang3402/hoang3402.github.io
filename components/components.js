@@ -26,7 +26,6 @@ app.component('heroSlider', {
 })
 app.component('productSection', {
     templateUrl: '../components/product_section/product_section.html',
-    controller: "GetListAnime",
 })
 app.component('animeDetailsEpisode', {
     templateUrl: '../components/anime__details__episodes/anime_details_episodes.html',
@@ -57,4 +56,20 @@ app.component('heroItem', {
         linkImage: '@',
         description: '@',
     }
+})
+app.component('trendingProduct', {
+    templateUrl: '../components/product_section/trending_product.html',
+    controller: "GetListAnimeTrending",
+})
+app.component('liveProduct', {
+    templateUrl: '../components/product_section/live_product.html',
+})
+app.component('recentProduct', {
+    templateUrl: '../components/product_section/recent_product.html',
+})
+app.component('popularProduct', {
+    templateUrl: '../components/product_section/popular_product.html',
+})
+app.component('productSidebar', {
+    templateUrl: '../components/product_section/product_sidebar.html',
 })

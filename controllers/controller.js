@@ -1,9 +1,9 @@
 const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php';
 
-app.controller("GetListAnime", function ($scope, $http) {
+app.controller("GetListAnimeTrending", function ($scope, $http) {
     $http({
             method: "GET",
-            url: `${DOMAIN}/Anime/GetList/6`,
+            url: `${DOMAIN}/Anime/GetListAnimeTrending/6`,
         })
         .then((res) => {
             $scope.list = res.data;
