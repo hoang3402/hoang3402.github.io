@@ -43,6 +43,7 @@ app.controller("AnimeDetailsController", function ($scope, $routeParams, $anchor
             $scope.linkImage = data.cover_image_url
             $scope.description = data.description
             $scope.views = data.views
+            $scope.genres = data.genres
         })
 })
 
