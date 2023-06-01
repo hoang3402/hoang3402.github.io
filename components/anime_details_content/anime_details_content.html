@@ -31,7 +31,11 @@
 					</div>
 					<span>1.029 Votes</span>
 				</div>
-				<p>{{description}}</p>
+				<div class="description">
+					<p ng-hide="showFullText">{{ descriptionShort }}</p>
+					<p ng-show="showFullText">{{ description }}</p>
+					<a href="#" ng-click="toggleShowFullText($event)">Read more</a>
+				</div>
 				<div class="anime__details__widget">
 					<div class="row">
 						<div class="col-lg-6 col-md-6">
