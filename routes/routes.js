@@ -1,12 +1,10 @@
 app.config(function ($routeProvider) {
 	$routeProvider.when('/login', {
 		templateUrl: '../views/login.html',
-		controller: '',
 	});
 
 	$routeProvider.when('/signup', {
 		templateUrl: '../views/signup.html',
-		controller: '',
 	});
 
 	$routeProvider.when('/blog', {
