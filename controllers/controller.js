@@ -79,6 +79,7 @@ app.controller(
 			url: `${DOMAIN}/Anime/GetMoviesByCategory/${$routeParams.id}/18`,
 		}).then((res) => {
 			$scope.data = res.data;
+			$scope.categoryName = res.data[0].name;
 		});
 	},
 );
