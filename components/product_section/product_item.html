@@ -8,10 +8,10 @@
 		<div class="view"><i class="fa fa-eye"></i> {{$ctrl.views}}</div>
 	</div>
 	<div class="product__item__text">
-		<ul>
+		<ul style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap">
 			<li ng-repeat="item in $ctrl.genres.split(',')">{{item}}</li>
 		</ul>
-		<h5>
+		<h5 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap">
 			<a href="#!anime-details/{{$ctrl.id}}">
 				<span> {{$ctrl.name}} </span>
 			</a>
