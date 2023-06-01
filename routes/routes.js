@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
 		templateUrl: '../views/blog.html',
 	});
 
-	$routeProvider.when('/categories', {
+	$routeProvider.when('/categories/:id', {
 		templateUrl: '../views/categories.html',
 	});
 

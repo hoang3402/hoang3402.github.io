@@ -4,15 +4,9 @@ app.controller('GetListAnimeTrending', function ($scope, $http) {
 	$http({
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetListAnimeTrending/6`,
-	}).then(
-		(res) => {
-			$scope.list = res.data;
-			console.log(`.then ~ res.data:`, res.data);
-		},
-		() => {
-			alert('Server bị gì rồi á');
-		},
-	);
+	}).then((res) => {
+		$scope.list = res.data;
+	});
 });
 
 app.controller('GetGenres', function ($scope, $http) {
@@ -72,6 +66,19 @@ app.controller(
 		}).then((res) => {
 			$scope.data = res.data;
 			$scope.url = res.data[$routeParams.id - 1].video_url;
+		});
+	},
+);
+
+app.controller(
+	'CategoryController',
+	function ($scope, $routeParams, $anchorScroll, $http) {
+		$anchorScroll();
+		$http({
+			method: 'GET',
+			url: `${DOMAIN}/Anime/GetMoviesByCategory/${$routeParams.id}/18`,
+		}).then((res) => {
+			$scope.data = res.data;
 		});
 	},
 );
