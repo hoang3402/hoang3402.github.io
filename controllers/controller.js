@@ -56,6 +56,7 @@ app.controller(
 			$scope.description = data.description;
 			$scope.views = data.views;
 			$scope.genres = data.genres;
+			$scope.vote = data.vote;
 		});
 	},
 );
