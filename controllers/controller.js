@@ -83,3 +83,12 @@ app.controller(
 		});
 	},
 );
+
+app.controller('HeroSliderController', function ($scope, $http) {
+	$http({
+		method: 'GET',
+		url: `${DOMAIN}/Anime/GetListAnimeTrending/3`,
+	}).then((res) => {
+		$scope.data = res.data;
+	});
+});

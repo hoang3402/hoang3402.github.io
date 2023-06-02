@@ -1,26 +1,29 @@
 <!-- Hero Section Begin -->
-<section class="hero" hero-slider>
-    <div class="container">
-        <div class="hero__slider owl-carousel">
-            <hero-item
-                id-movie="2"
-                name="Fate / Stay Night: Unlimited Blade Works"
-                description="After 30 days of travel across the world..."
-                link-image="../assets/img/hero/hero-1.jpg"
-            ></hero-item>
-            <hero-item
-                id-movie="3"
-                name="Gintama Movie 2: Kanketsu-hen"
-                description="After 30 days of travel across the world..."
-                link-image="../assets/img/hero/hero-1.jpg"
-            ></hero-item>
-            <hero-item
-                id-movie="4"
-                name="The Seven Deadly Sins: Wrath of the Gods"
-                description="After 30 days of travel across the world..."
-                link-image="../assets/img/hero/hero-1.jpg"
-            ></hero-item>
-        </div>
-    </div>
+<section class="hero" hero-slider ng-controller="HeroSliderController">
+	<div class="container">
+		<div class="hero__slider owl-carousel">
+			<hero-item
+				id-movie="{{data[0].id}}"
+				name="{{data[0].title}}"
+				description="{{data[0].description.substring(0, 50)}}..."
+				link-image="{{data[0].cover_image_url}}"
+				id="{{data[0].id}}"
+			></hero-item>
+			<hero-item
+				id-movie="{{data[1].id}}"
+				name="{{data[1].title}}"
+				description="{{data[1].description.substring(0, 50)}}..."
+				link-image="{{data[1].cover_image_url}}"
+				id="{{data[1].id}}"
+			></hero-item>
+			<hero-item
+				id-movie="{{data[2].id}}"
+				name="{{data[2].title}}"
+				description="{{data[2].description.substring(0, 50)}}..."
+				link-image="{{data[2].cover_image_url}}"
+				id="{{data[2].id}}"
+			></hero-item>
+		</div>
+	</div>
 </section>
 <!-- Hero Section End -->
