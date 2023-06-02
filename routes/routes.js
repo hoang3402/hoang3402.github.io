@@ -13,6 +13,7 @@ app.config(function ($routeProvider) {
 
 	$routeProvider.when('/categories/:id', {
 		templateUrl: '../views/categories.html',
+		controller: 'CategoryController',
 	});
 
 	$routeProvider.when('/anime-details/:id', {
