@@ -4,7 +4,7 @@ app.directive('preLoader', function () {
 			/*------------------
                 Preloader
             --------------------*/
-			$(window).on('load', function () {
+			$(window).ready(function () {
 				$('.loader').fadeOut();
 				$('#preloder').delay(200).fadeOut('slow');
 			});
