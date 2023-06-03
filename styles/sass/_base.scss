@@ -141,6 +141,7 @@ ol {
 
 .skeleton {
 	animation: skeleton-loading 1s linear infinite alternate;
+	-webkit-animation: skeleton-loading 1s linear infinite alternate;
 }
 
 .skeleton-text {
