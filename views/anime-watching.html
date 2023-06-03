@@ -21,13 +21,26 @@
 						<track
 							kind="captions"
 							label="English captions"
-							src="https://sizl.ink/Subtitles-Your-Name"
+							src=""
 							srclang="en"
 							default
 						/>
 					</video>
 				</div>
-				<div class="anime__details__episodes">
+				<div class="anime__details__episodes" ng-show="isManyQuality(Id)">
+					<div class="section-title">
+						<h5>List quality</h5>
+					</div>
+					<a
+						class="episode"
+						ng-repeat="item in data[Id-1].URLs"
+						href=""
+						ng-click="handleChangeQuality(item.url)"
+					>
+						{{item.quality}}
+					</a>
+				</div>
+				<div class="anime__details__episodes" ng-show="data.length > 1">
 					<div class="section-title">
 						<h5>List episode</h5>
 					</div>
@@ -35,9 +48,9 @@
 						class="episode"
 						ng-repeat="item in data"
 						select-episode
-						href="#!anime/{{animeId}}/episode/{{item.episode_number}}"
+						href="#!anime/{{animeId}}/episode/{{item.Episode}}"
 					>
-						{{item.episode_number}}
+						{{item.Episode}}
 					</a>
 				</div>
 			</div>

@@ -60,13 +60,26 @@ app.controller(
 	function ($scope, $routeParams, $anchorScroll, $http) {
 		$anchorScroll();
 		$scope.animeId = $routeParams.animeId;
+		$scope.Id = $routeParams.id;
+
 		$http({
 			method: 'GET',
 			url: `${DOMAIN}/Anime/GetMovies/${$scope.animeId}`,
 		}).then((res) => {
 			$scope.data = res.data;
-			$scope.url = res.data[$routeParams.id - 1].video_url;
+			$scope.url = $scope.data[0].URLs[0].url;
 		});
+
+		$scope.isManyQuality = function (id) {
+			if (typeof id == 'undefined' || typeof $scope.data == 'undefined') {
+				return;
+			}
+			return $scope.data[id - 1].URLs.length > 1;
+		};
+
+		$scope.handleChangeQuality = function (url) {
+			$scope.url = url;
+		};
 	},
 );
 
