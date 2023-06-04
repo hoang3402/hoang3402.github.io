@@ -9,6 +9,15 @@ app.component('productItem', {
 		genres: '@',
 	},
 });
+app.component('viewItem', {
+	templateUrl: '../components/anime_top_views/view_item.html',
+	bindings: {
+		id: '@',
+		name: '@',
+		url: '@',
+		views: '@',
+	},
+});
 app.component('headerCustoms', {
 	templateUrl: '../components/header/header.html',
 	controller: 'GetGenres',
