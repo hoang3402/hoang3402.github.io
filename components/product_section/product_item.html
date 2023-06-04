@@ -9,12 +9,22 @@
 		<div class="view"><i class="fa fa-eye"></i> {{$ctrl.views}}</div>
 	</div>
 	<div class="product__item__text">
-		<ul style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap">
-			<li ng-repeat="item in $ctrl.genres.split(',')">{{item}}</li>
+		<ul
+			ng-show="$ctrl.genres[0].name"
+			style="
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				cursor: pointer;
+			"
+		>
+			<li ng-repeat="item in $ctrl.genres" redirect="#!categories/{{item.id}}">
+				{{item.name}}
+			</li>
 		</ul>
 		<h5 style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap">
 			<a href="#!anime-details/{{$ctrl.id}}">
-				<span> {{$ctrl.name}}</span>
+				<span>{{$ctrl.name}}</span>
 			</a>
 		</h5>
 	</div>

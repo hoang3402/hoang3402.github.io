@@ -6,7 +6,7 @@ app.component('productItem', {
 		url: '@',
 		comment: '@',
 		views: '@',
-		genres: '@',
+		genres: '<',
 	},
 });
 app.component('viewItem', {

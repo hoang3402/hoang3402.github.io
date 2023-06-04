@@ -5,7 +5,7 @@ app.controller('GetListAnimeTrending', function ($scope, $http) {
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetListAnimeTrending/6`,
 	}).then((res) => {
-		$scope.list = res.data;
+		$scope.list = res.data.slice(0, 6);
 	});
 });
 
@@ -14,7 +14,7 @@ app.controller('GetListAnimePopular', function ($scope, $http) {
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetListAnimePopular`,
 	}).then((res) => {
-		$scope.list = res.data;
+		$scope.list = res.data.slice(0, 6);
 	});
 });
 
@@ -52,13 +52,13 @@ app.controller(
 			method: 'GET',
 			url: `${DOMAIN}/Anime/GetAnimeById/${$scope.id}`,
 		}).then((res) => {
-			var data = res.data[0];
+			var data = res.data;
 			$scope.title = data.title;
 			$scope.linkImage = data.cover_image_url;
 			$scope.descriptionShort = data.description.substring(0, 250);
 			$scope.description = data.description;
 			$scope.views = data.views;
-			$scope.genres = data.genres;
+			$scope.genres = data.genres.map((item) => item.name).join(', ');
 			$scope.vote = data.vote;
 		});
 	},
@@ -101,6 +101,7 @@ app.controller(
 			url: `${DOMAIN}/Anime/GetMoviesByCategory/${$routeParams.id}/18`,
 		}).then((res) => {
 			$scope.data = res.data;
+			console.log(`$scope.data:`, $scope.data);
 			$scope.categoryName = res.data[0].name;
 		});
 	},
