@@ -461,6 +461,11 @@ ol {
   opacity: 0;
   transition: all, 0.6s;
 }
+.hero__text h2,
+.hero__text p {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: #fff;
+}
 .hero__text a {
   position: relative;
   top: -100px;
@@ -728,6 +733,8 @@ ol {
   top: 10px;
 }
 .product__sidebar__view__item h5 {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: #fff;
   position: absolute;
   left: 0;
   bottom: 25px;

@@ -54,6 +54,13 @@
 		@include transition(all, 0.6s);
 	}
 
+	h2,
+	p {
+		text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+			1px 1px 0 #000;
+		color: #fff;
+	}
+
 	a {
 		position: relative;
 		top: -100px;
