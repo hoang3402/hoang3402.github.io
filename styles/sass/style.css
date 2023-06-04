@@ -418,6 +418,10 @@ ol {
 .hero__items {
   padding: 250px 0 42px 50px;
   border-radius: 5px;
+  min-height: 551.6px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .hero__text {
