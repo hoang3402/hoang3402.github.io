@@ -9,6 +9,15 @@ app.controller('GetListAnimeTrending', function ($scope, $http) {
 	});
 });
 
+app.controller('GetListAnimePopular', function ($scope, $http) {
+	$http({
+		method: 'GET',
+		url: `${DOMAIN}/Anime/GetListAnimePopular`,
+	}).then((res) => {
+		$scope.list = res.data;
+	});
+});
+
 app.controller('GetGenres', function ($scope, $http) {
 	$http({
 		method: 'GET',

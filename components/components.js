@@ -79,6 +79,7 @@ app.component('recentProduct', {
 });
 app.component('popularProduct', {
 	templateUrl: '../components/product_section/popular_product.html',
+	controller: 'GetListAnimePopular',
 });
 app.component('productSidebar', {
 	templateUrl: '../components/product_section/product_sidebar.html',
