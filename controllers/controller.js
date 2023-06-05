@@ -137,21 +137,6 @@ app.controller('login', function ($scope) {
 			});
 	};
 
-	$scope.loginWithFacebook = function () {
-		firebase
-			.auth()
-			.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-			.then(function (result) {
-				var user = result.user;
-				console.log('Facebook login successful: ', user);
-				// Do something after successful login
-			})
-			.catch(function (error) {
-				console.log('Facebook login failed: ', error);
-				// Handle login error
-			});
-	};
-
 	$scope.loginWithGoogle = function () {
 		var provider = new firebase.auth.GoogleAuthProvider();
 		firebase
