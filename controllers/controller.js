@@ -137,3 +137,38 @@ app.controller('login', function ($scope) {
 			});
 	};
 });
+
+app.controller('register', function ($scope) {
+	$scope.register = function () {
+		var email = $scope.email;
+		var password = $scope.password;
+		var username = $scope.username;
+
+		firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then(function (userCredential) {
+				var user = userCredential.user;
+
+				// Update the username
+				return user
+					.updateProfile({
+						displayName: username,
+					})
+					.then(function () {
+						console.log('Registration successful: ', user);
+						// Do something after successful registration and username update
+					})
+					.catch(function (error) {
+						console.log('Username update failed: ', error);
+						// Handle username update error
+					});
+			})
+			.catch(function (error) {
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				console.log('Registration failed: ', errorMessage);
+				// Handle registration error
+			});
+	};
+});

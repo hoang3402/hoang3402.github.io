@@ -17,7 +17,7 @@
 <!-- Normal Breadcrumb End -->
 
 <!-- Signup Section Begin -->
-<section class="signup spad">
+<section class="signup spad" ng-controller="register">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
@@ -25,18 +25,28 @@
 					<h3>Đăng ký</h3>
 					<form action="#">
 						<div class="input__item">
-							<input type="text" placeholder="Địa chỉ Email" />
+							<input ng-model="email" type="text" placeholder="Địa chỉ Email" />
 							<span class="icon_mail"></span>
 						</div>
 						<div class="input__item">
-							<input type="text" placeholder="Tên của bạn" />
+							<input
+								ng-model="username"
+								type="text"
+								placeholder="Tên của bạn"
+							/>
 							<span class="icon_profile"></span>
 						</div>
 						<div class="input__item">
-							<input type="text" placeholder="Mật khẩu" />
+							<input
+								ng-model="password"
+								type="password"
+								placeholder="Mật khẩu"
+							/>
 							<span class="icon_lock"></span>
 						</div>
-						<button type="" class="site-btn">Đăng ký</button>
+						<button type="" class="site-btn" ng-click="register()">
+							Đăng ký
+						</button>
 					</form>
 					<h5>Bạn đã có tài khoản? <a href="#!login">Đăng nhập!</a></h5>
 				</div>
