@@ -136,6 +136,35 @@ app.controller('login', function ($scope) {
 				// Handle login error
 			});
 	};
+
+	$scope.loginWithFacebook = function () {
+		firebase
+			.auth()
+			.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+			.then(function (result) {
+				var user = result.user;
+				console.log('Facebook login successful: ', user);
+				// Do something after successful login
+			})
+			.catch(function (error) {
+				console.log('Facebook login failed: ', error);
+				// Handle login error
+			});
+	};
+
+	$scope.loginWithGoogle = function () {
+		var provider = new firebase.auth.GoogleAuthProvider();
+		firebase
+			.auth()
+			.signInWithPopup(provider)
+			.then(function (result) {
+				var user = result.user;
+				console.log('Đăng nhập thành công: ', user);
+			})
+			.catch(function (error) {
+				console.log('Đăng nhập thất bại: ', error);
+			});
+	};
 });
 
 app.controller('register', function ($scope) {

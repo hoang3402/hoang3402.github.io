@@ -9,7 +9,7 @@
 
 'use strict';
 
-// Cấu hình Firebase
+// Config Firebase
 var firebaseConfig = {
 	apiKey: 'AIzaSyCtt-OIOhdl-F0GxAWoaxne5rnVsYaPDSg',
 	authDomain: 'anime-67796.firebaseapp.com',
