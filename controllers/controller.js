@@ -1,5 +1,21 @@
 const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php';
 
+app.controller('CheckAuth', ($scope) => {
+	(() => {
+		firebase.auth().onAuthStateChanged(function (user) {
+			if (user) {
+				// Người dùng đã đăng nhập
+				// console.log('User is logged in:', user);
+				$scope.isLogin = true;
+			} else {
+				// Người dùng chưa đăng nhập
+				console.log('User is logged out');
+				$scope.isLogin = false;
+			}
+		});
+	})();
+});
+
 app.controller('GetListAnimeTrending', function ($scope, $http) {
 	$http({
 		method: 'GET',
@@ -126,8 +142,9 @@ app.controller('login', function ($scope) {
 			.signInWithEmailAndPassword(email, password)
 			.then(function (userCredential) {
 				var user = userCredential.user;
-				console.log('Login successful: ', user);
+				// console.log('Login successful: ', user);
 				// Do something after successful login
+				localStorage.setItem('user', JSON.stringify(user.displayName));
 			})
 			.catch(function (error) {
 				var errorCode = error.code;
@@ -145,6 +162,8 @@ app.controller('login', function ($scope) {
 			.then(function (result) {
 				var user = result.user;
 				console.log('Đăng nhập thành công: ', user);
+				// Lưu đối tượng user vào local storage
+				localStorage.setItem('user', JSON.stringify(user.displayName));
 			})
 			.catch(function (error) {
 				console.log('Đăng nhập thất bại: ', error);
@@ -162,6 +181,7 @@ app.controller('login', function ($scope) {
 				// Handle successful authentication
 				var user = result.user;
 				console.log('Logged in user:', user);
+				localStorage.setItem('user', JSON.stringify(user.displayName));
 			})
 			.catch(function (error) {
 				// Handle authentication error
@@ -189,7 +209,7 @@ app.controller('register', function ($scope) {
 					})
 					.then(function () {
 						console.log('Registration successful: ', user);
-						// Do something after successful registration and username update
+						localStorage.setItem('user', JSON.stringify(user.displayName));
 					})
 					.catch(function (error) {
 						console.log('Username update failed: ', error);

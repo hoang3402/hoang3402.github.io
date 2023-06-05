@@ -1,5 +1,5 @@
 <!-- Header Section Begin -->
-<header class="header">
+<header class="header" ng-controller="CheckAuth">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-2">
@@ -40,7 +40,10 @@
 					<a href="#" class="search-switch">
 						<span class="icon_search"></span>
 					</a>
-					<a href="#!login">
+					<a href="#!login" ng-hide="isLogin">
+						<span class="icon_profile"></span>
+					</a>
+					<a href="" ng-show="isLogin">
 						<span class="icon_profile"></span>
 					</a>
 				</div>
