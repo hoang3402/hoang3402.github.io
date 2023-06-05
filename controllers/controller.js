@@ -165,6 +165,24 @@ app.controller('login', function ($scope) {
 				console.log('Đăng nhập thất bại: ', error);
 			});
 	};
+
+	$scope.loginWithTwitter = function () {
+		var provider = new firebase.auth.TwitterAuthProvider();
+
+		// Authenticate with Firebase using the Twitter provider
+		firebase
+			.auth()
+			.signInWithPopup(provider)
+			.then(function (result) {
+				// Handle successful authentication
+				var user = result.user;
+				console.log('Logged in user:', user);
+			})
+			.catch(function (error) {
+				// Handle authentication error
+				console.error('Authentication failed:', error);
+			});
+	};
 });
 
 app.controller('register', function ($scope) {

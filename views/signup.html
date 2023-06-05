@@ -53,29 +53,27 @@
 			</div>
 			<div class="col-lg-6">
 				<!-- Login with social -->
-				<!-- <div class="login__social__links">
-                    <h3>Login With:</h3>
-                    <ul>
-                        <li>
+				<div class="login__social__links" ng-controller="login">
+					<h3>Login With:</h3>
+					<ul>
+						<!-- <li>
                             <a href="#" class="facebook"
                                 ><i class="fa fa-facebook"></i> Sign in With
                                 Facebook</a
                             >
-                        </li>
-                        <li>
-                            <a href="#" class="google"
-                                ><i class="fa fa-google"></i> Sign in With
-                                Google</a
-                            >
-                        </li>
-                        <li>
-                            <a href="#" class="twitter"
-                                ><i class="fa fa-twitter"></i> Sign in With
-                                Twitter</a
-                            >
-                        </li>
-                    </ul>
-                </div> -->
+                        </li> -->
+						<li>
+							<a href="" class="google" ng-click="loginWithGoogle()">
+								<i class="fa fa-google"></i> Sign in With Google
+							</a>
+						</li>
+						<li>
+							<a href="" class="twitter" ng-click="loginWithTwitter()">
+								<i class="fa fa-twitter"></i> Sign in With Twitter
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
