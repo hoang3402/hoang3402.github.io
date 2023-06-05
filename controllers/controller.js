@@ -115,3 +115,25 @@ app.controller('HeroSliderController', function ($scope, $http) {
 		$scope.data = res.data;
 	});
 });
+
+app.controller('login', function ($scope) {
+	$scope.login = function () {
+		var email = $scope.email;
+		var password = $scope.password;
+
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then(function (userCredential) {
+				var user = userCredential.user;
+				console.log('Login successful: ', user);
+				// Do something after successful login
+			})
+			.catch(function (error) {
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				console.log('Login failed: ', errorMessage);
+				// Handle login error
+			});
+	};
+});

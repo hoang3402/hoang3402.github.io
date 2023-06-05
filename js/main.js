@@ -9,6 +9,16 @@
 
 'use strict';
 
+// Cấu hình Firebase
+var firebaseConfig = {
+	apiKey: 'AIzaSyCtt-OIOhdl-F0GxAWoaxne5rnVsYaPDSg',
+	authDomain: 'anime-67796.firebaseapp.com',
+	projectId: 'anime-67796',
+};
+
+// Khởi tạo ứng dụng Firebase
+firebase.initializeApp(firebaseConfig);
+
 /*------------------
     Angular
 --------------------*/
