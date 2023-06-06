@@ -154,8 +154,7 @@ app.controller('login', function ($scope) {
 			.catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
-				console.log('Login failed: ', errorMessage);
-				// Handle login error
+				console.log('Đăng nhập thất bại: ', errorMessage);
 			});
 	};
 
@@ -190,8 +189,7 @@ app.controller('login', function ($scope) {
 				$scope.alert();
 			})
 			.catch(function (error) {
-				// Handle authentication error
-				console.error('Authentication failed:', error);
+				console.error('Đăng nhập thất bại:', error);
 			});
 	};
 });
@@ -208,25 +206,23 @@ app.controller('register', function ($scope) {
 			.then(function (userCredential) {
 				var user = userCredential.user;
 
-				// Update the username
 				return user
 					.updateProfile({
 						displayName: username,
 					})
 					.then(function () {
-						console.log('Registration successful: ', user);
+						console.log('Đăng ký thành công: ', user);
 						localStorage.setItem('user', JSON.stringify(user.displayName));
 					})
 					.catch(function (error) {
-						console.log('Username update failed: ', error);
+						console.log('Cập nhật Username thất bại: ', error);
 						// Handle username update error
 					});
 			})
 			.catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
-				console.log('Registration failed: ', errorMessage);
-				// Handle registration error
+				console.log('Đăng ký thất bại: ', errorMessage);
 			});
 	};
 });
