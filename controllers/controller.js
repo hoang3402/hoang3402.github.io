@@ -133,6 +133,10 @@ app.controller('HeroSliderController', function ($scope, $http) {
 });
 
 app.controller('login', function ($scope) {
+	$scope.alert = function () {
+		swal('Hello world!');
+	};
+
 	$scope.login = function () {
 		var email = $scope.email;
 		var password = $scope.password;
@@ -142,9 +146,10 @@ app.controller('login', function ($scope) {
 			.signInWithEmailAndPassword(email, password)
 			.then(function (userCredential) {
 				var user = userCredential.user;
-				// console.log('Login successful: ', user);
-				// Do something after successful login
+				// console.log('Đăng nhập thành công: ', user);
 				localStorage.setItem('user', JSON.stringify(user.displayName));
+
+				$scope.alert();
 			})
 			.catch(function (error) {
 				var errorCode = error.code;
@@ -161,9 +166,10 @@ app.controller('login', function ($scope) {
 			.signInWithPopup(provider)
 			.then(function (result) {
 				var user = result.user;
-				console.log('Đăng nhập thành công: ', user);
-				// Lưu đối tượng user vào local storage
+				// console.log('Đăng nhập thành công: ', user);
 				localStorage.setItem('user', JSON.stringify(user.displayName));
+
+				$scope.alert();
 			})
 			.catch(function (error) {
 				console.log('Đăng nhập thất bại: ', error);
@@ -173,15 +179,15 @@ app.controller('login', function ($scope) {
 	$scope.loginWithTwitter = function () {
 		var provider = new firebase.auth.TwitterAuthProvider();
 
-		// Authenticate with Firebase using the Twitter provider
 		firebase
 			.auth()
 			.signInWithPopup(provider)
 			.then(function (result) {
-				// Handle successful authentication
 				var user = result.user;
-				console.log('Logged in user:', user);
+				// console.log('Đăng nhập thành công:', user);
 				localStorage.setItem('user', JSON.stringify(user.displayName));
+
+				$scope.alert();
 			})
 			.catch(function (error) {
 				// Handle authentication error
