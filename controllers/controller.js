@@ -132,9 +132,18 @@ app.controller('HeroSliderController', function ($scope, $http) {
 	});
 });
 
-app.controller('login', function ($scope) {
+app.controller('login', function ($scope, $location) {
 	$scope.alert = function () {
-		swal('Hello world!');
+		swal({
+			title: 'Alert',
+			text: 'Login success!',
+			icon: 'success',
+			button: false,
+		});
+
+		setTimeout(function () {
+			swal.close();
+		}, 1000);
 	};
 
 	$scope.login = function () {
@@ -146,15 +155,15 @@ app.controller('login', function ($scope) {
 			.signInWithEmailAndPassword(email, password)
 			.then(function (userCredential) {
 				var user = userCredential.user;
-				// console.log('Đăng nhập thành công: ', user);
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
 				$scope.alert();
+
+				$location.path('#!index');
 			})
 			.catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
-				console.log('Đăng nhập thất bại: ', errorMessage);
 			});
 	};
 
@@ -165,14 +174,13 @@ app.controller('login', function ($scope) {
 			.signInWithPopup(provider)
 			.then(function (result) {
 				var user = result.user;
-				// console.log('Đăng nhập thành công: ', user);
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
 				$scope.alert();
+
+				$location.path('#!index');
 			})
-			.catch(function (error) {
-				console.log('Đăng nhập thất bại: ', error);
-			});
+			.catch(function (error) {});
 	};
 
 	$scope.loginWithTwitter = function () {
@@ -183,14 +191,13 @@ app.controller('login', function ($scope) {
 			.signInWithPopup(provider)
 			.then(function (result) {
 				var user = result.user;
-				// console.log('Đăng nhập thành công:', user);
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
 				$scope.alert();
+
+				$location.path('#!index');
 			})
-			.catch(function (error) {
-				console.error('Đăng nhập thất bại:', error);
-			});
+			.catch(function (error) {});
 	};
 });
 
@@ -213,6 +220,7 @@ app.controller('register', function ($scope) {
 					.then(function () {
 						console.log('Đăng ký thành công: ', user);
 						localStorage.setItem('user', JSON.stringify(user.displayName));
+						$location.path('#!index');
 					})
 					.catch(function (error) {
 						console.log('Cập nhật Username thất bại: ', error);
@@ -223,6 +231,60 @@ app.controller('register', function ($scope) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				console.log('Đăng ký thất bại: ', errorMessage);
+				swal({
+					title: 'Alert',
+					text: 'Register error!',
+					icon: 'error',
+					button: false,
+				});
 			});
+	};
+});
+
+app.controller('profile', function ($scope, $location) {
+	$scope.isLoading = true;
+
+	(() => {
+		firebase.auth().onAuthStateChanged(function (user) {
+			if (user) {
+				$scope.user = user;
+				$scope.isLoading = false;
+			}
+		});
+	})();
+
+	$scope.logout = function () {
+		firebase
+			.auth()
+			.signOut()
+			.then(
+				() => {
+					console.log('User logged out successfully.');
+					swal({
+						title: 'Alert',
+						text: 'Logout success!',
+						icon: 'success',
+						button: false,
+					});
+
+					setTimeout(function () {
+						swal.close();
+					}, 1000);
+
+					$location.path('#!index');
+				},
+				() => {
+					swal({
+						title: 'Alert',
+						text: 'Error!',
+						icon: 'error',
+						button: false,
+					});
+
+					setTimeout(function () {
+						swal.close();
+					}, 1000);
+				},
+			);
 	};
 });
