@@ -29,6 +29,10 @@ app.config(function ($routeProvider) {
 		controller: 'BlogDetail',
 	});
 
+	$routeProvider.when('/profile', {
+		template: '<profile></profile>',
+	});
+
 	$routeProvider.otherwise({
 		template: '<hero-slider></hero-slider> <product-section></product-section>',
 	});

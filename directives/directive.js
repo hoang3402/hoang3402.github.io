@@ -178,3 +178,11 @@ app.directive('redirect', function () {
 		},
 	};
 });
+
+app.directive('profile', function () {
+	return {
+		restrict: 'E',
+		templateUrl: '../components/profile/profile.html',
+		controller: 'profile',
+	};
+});

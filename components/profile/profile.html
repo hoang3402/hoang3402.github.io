@@ -1,0 +1,49 @@
+<style>
+	.user-info {
+		color: white;
+		text-align: center;
+		margin: 100px 0;
+	}
+
+	.user-info h2 {
+		color: #ffeb3b;
+	}
+
+	table {
+		border-collapse: collapse;
+		width: 50%;
+		margin: 0 auto;
+	}
+
+	th,
+	td {
+		padding: 8px;
+		text-align: left;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.logout-btn {
+		margin-top: 20px;
+	}
+</style>
+
+<div style="color: white" class="user-info">
+	<h2>User Information</h2>
+
+	<div ng-if="isLoading">Loading...</div>
+	<div ng-if="!isLoading">
+		<table>
+			<tr>
+				<th>Name</th>
+				<td>{{user.displayName}}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{user.email}}</td>
+			</tr>
+		</table>
+		<button class="btn btn-warning mt-3 logout-btn" ng-click="logout()">
+			Logout
+		</button>
+	</div>
+</div>

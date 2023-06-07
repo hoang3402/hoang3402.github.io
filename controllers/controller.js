@@ -226,3 +226,51 @@ app.controller('register', function ($scope) {
 			});
 	};
 });
+
+app.controller('profile', function ($scope, $location) {
+	$scope.isLoading = true;
+
+	(() => {
+		firebase.auth().onAuthStateChanged(function (user) {
+			if (user) {
+				$scope.user = user;
+				$scope.isLoading = false;
+			}
+		});
+	})();
+
+	$scope.logout = function () {
+		firebase
+			.auth()
+			.signOut()
+			.then(
+				() => {
+					console.log('User logged out successfully.');
+					swal({
+						title: 'Thông báo',
+						text: 'Đăng xuất thành công!',
+						icon: 'success',
+						button: false,
+					});
+
+					setTimeout(function () {
+						swal.close();
+					}, 1000);
+
+					$location.path('#!index');
+				},
+				() => {
+					swal({
+						title: 'Thông báo',
+						text: 'Đã có lỗi xãy ra!',
+						icon: 'failed',
+						button: false,
+					});
+
+					setTimeout(function () {
+						swal.close();
+					}, 1000);
+				},
+			);
+	};
+});
