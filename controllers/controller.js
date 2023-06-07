@@ -242,14 +242,11 @@ app.controller('register', function ($scope) {
 });
 
 app.controller('profile', function ($scope, $location) {
-	$scope.isLoading = true;
-
 	(() => {
 		firebase.auth().onAuthStateChanged(function (user) {
-			if (user) {
+			$scope.$apply(function () {
 				$scope.user = user;
-				$scope.isLoading = false;
-			}
+			});
 		});
 	})();
 

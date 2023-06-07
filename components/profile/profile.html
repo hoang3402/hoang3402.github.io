@@ -30,20 +30,17 @@
 <div style="color: white" class="user-info">
 	<h2>User Information</h2>
 
-	<div ng-if="isLoading">Loading...</div>
-	<div ng-if="!isLoading">
-		<table>
-			<tr>
-				<th>Name</th>
-				<td>{{user.displayName}}</td>
-			</tr>
-			<tr>
-				<th>Email</th>
-				<td>{{user.email}}</td>
-			</tr>
-		</table>
-		<button class="btn btn-warning mt-3 logout-btn" ng-click="logout()">
-			Logout
-		</button>
-	</div>
+	<table>
+		<tr>
+			<th>Name</th>
+			<td ng-bind="user.displayName"></td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td ng-bind="user.email"></td>
+		</tr>
+	</table>
+	<button class="btn btn-warning mt-3 logout-btn" ng-click="logout()">
+		Logout
+	</button>
 </div>
