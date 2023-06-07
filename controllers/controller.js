@@ -133,17 +133,24 @@ app.controller('HeroSliderController', function ($scope, $http) {
 });
 
 app.controller('login', function ($scope, $location) {
-	$scope.alert = function () {
-		swal({
+	$scope.alertSuccess = function () {
+		Swal.fire({
 			title: 'Alert',
 			text: 'Login success!',
 			icon: 'success',
-			button: false,
+			showConfirmButton: false,
+			timer: 1500,
 		});
+	};
 
-		setTimeout(function () {
-			swal.close();
-		}, 1000);
+	$scope.alertFailed = function () {
+		Swal.fire({
+			title: 'Alert',
+			text: 'Failed!',
+			icon: 'error',
+			showConfirmButton: false,
+			timer: 1500,
+		});
 	};
 
 	$scope.login = function () {
@@ -157,13 +164,22 @@ app.controller('login', function ($scope, $location) {
 				var user = userCredential.user;
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
-				$scope.alert();
+				$scope.alertSuccess();
 
-				$location.path('#!index');
+				$scope.$apply(() => {
+					$location.path('/index');
+				});
 			})
 			.catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
+				console.log(`code: ${errorCode}, message: ${errorMessage}`);
+
+				$scope.alertFailed();
+
+				$scope.$apply(() => {
+					$location.path('/login');
+				});
 			});
 	};
 
@@ -176,11 +192,18 @@ app.controller('login', function ($scope, $location) {
 				var user = result.user;
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
-				$scope.alert();
+				$scope.alertSuccess();
 
-				$location.path('#!index');
+				$scope.$apply(() => {
+					$location.path('/index');
+				});
 			})
-			.catch(function (error) {});
+			.catch(function (error) {
+				$scope.alertFailed();
+				$scope.$apply(() => {
+					$location.path('/login');
+				});
+			});
 	};
 
 	$scope.loginWithTwitter = function () {
@@ -193,15 +216,22 @@ app.controller('login', function ($scope, $location) {
 				var user = result.user;
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
-				$scope.alert();
+				$scope.alertSuccess();
 
-				$location.path('#!index');
+				$scope.$apply(() => {
+					$location.path('/index');
+				});
 			})
-			.catch(function (error) {});
+			.catch(function (error) {
+				$scope.alertFailed();
+				$scope.$apply(() => {
+					$location.path('/login');
+				});
+			});
 	};
 });
 
-app.controller('register', function ($scope) {
+app.controller('register', function ($scope, $location) {
 	$scope.register = function () {
 		var email = $scope.email;
 		var password = $scope.password;
@@ -218,24 +248,28 @@ app.controller('register', function ($scope) {
 						displayName: username,
 					})
 					.then(function () {
-						console.log('Đăng ký thành công: ', user);
 						localStorage.setItem('user', JSON.stringify(user.displayName));
-						$location.path('#!index');
+						$scope.$apply(() => {
+							$location.path('/index');
+						});
 					})
 					.catch(function (error) {
 						console.log('Cập nhật Username thất bại: ', error);
-						// Handle username update error
+						$scope.$apply(() => {
+							$location.path('/register');
+						});
 					});
 			})
 			.catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				console.log('Đăng ký thất bại: ', errorMessage);
-				swal({
+				Swal.fire({
 					title: 'Alert',
-					text: 'Register error!',
+					text: 'Failed!',
 					icon: 'error',
-					button: false,
+					showConfirmButton: false,
+					timer: 1500,
 				});
 			});
 	};
@@ -257,18 +291,21 @@ app.controller('profile', function ($scope, $location) {
 			.then(
 				() => {
 					console.log('User logged out successfully.');
-					swal({
+					Swal.fire({
 						title: 'Alert',
 						text: 'Logout success!',
 						icon: 'success',
-						button: false,
+						showConfirmButton: false,
+						timer: 1500,
 					});
 
 					setTimeout(function () {
 						swal.close();
 					}, 1000);
 
-					$location.path('#!index');
+					$scope.$apply(() => {
+						$location.path('/index');
+					});
 				},
 				() => {
 					swal({
@@ -278,9 +315,9 @@ app.controller('profile', function ($scope, $location) {
 						button: false,
 					});
 
-					setTimeout(function () {
-						swal.close();
-					}, 1000);
+					$scope.$apply(() => {
+						$location.path('/register');
+					});
 				},
 			);
 	};
