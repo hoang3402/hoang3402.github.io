@@ -47,7 +47,10 @@ app.directive('datatable', function ($routeParams) {
 				angular.forEach($scope.data, function (item) {
 					var tr = angular.element('<tr>');
 					angular.forEach(item, function (value, key) {
-						var td = angular.element('<td>').text(value);
+						var temp = JSON.stringify(value);
+						var td = angular
+							.element('<td>')
+							.text(temp.length > 100 ? temp.substring(1, 100) + '...' : value);
 						tr.append(td);
 					});
 					tbody.append(tr);
@@ -60,7 +63,7 @@ app.directive('datatable', function ($routeParams) {
 				$('#example1')
 					.DataTable({
 						responsive: true,
-						lengthChange: false,
+						lengthChange: true,
 						autoWidth: false,
 						buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
 					})
