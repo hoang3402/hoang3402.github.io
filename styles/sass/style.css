@@ -1632,6 +1632,7 @@ ol {
   padding: 14px 0;
   position: relative;
   margin: 0 auto;
+  cursor: pointer;
 }
 .login__social__links ul li a.facebook {
   background: #4267b2;
