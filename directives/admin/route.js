@@ -1,6 +1,6 @@
 app.config(function ($routeProvider) {
 	$routeProvider.when('/table/:name', {
-		template: '<js-gird></js-gird>',
+		template: '<datatable></datatable>',
 	});
 	$routeProvider.otherwise({
 		template: '<h1>Hello</h1>',

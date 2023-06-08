@@ -20,12 +20,12 @@ app.directive('sideBar', () => {
 	};
 });
 
-app.directive('jsGird', () => {
+app.directive('datatable', function () {
 	return {
 		restrict: 'E',
-		templateUrl: './jsgird/jsgird.html',
+		templateUrl: './table/table.html',
 		controller: () => {
-			console.log('load jsGird');
+			console.log('load dataTable');
 		},
 	};
 });
