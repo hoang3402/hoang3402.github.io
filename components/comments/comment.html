@@ -1,0 +1,35 @@
+<div class="anime__details__review">
+	<div class="section-title">
+		<h5>Reviews</h5>
+	</div>
+	<div class="anime__review__item" ng-hide="data[0]">
+		<div class="anime__review__item__text">
+			<h6>Admin</h6>
+			<p>Be the first to comment!</p>
+		</div>
+	</div>
+	<div class="anime__review__item" ng-repeat="item in data">
+		<div class="anime__review__item__pic">
+			<img src="../assets/img/anime/review-1.jpg" alt="" />
+		</div>
+		<div class="anime__review__item__text">
+			<h6>
+				{{item.user_name}} -
+				<time-ago timestamp="{{item.created_at}}"></time-ago>
+			</h6>
+			<p>{{item.comment_text}}</p>
+		</div>
+	</div>
+</div>
+<div class="anime__details__form">
+	<div class="section-title">
+		<h5>Your Comment</h5>
+	</div>
+	<form>
+		<textarea placeholder="Your Comment" id="comment_new"></textarea>
+		<button ng-click="handleCreateComment()">
+			<i class="fa fa-location-arrow"></i>
+			Review
+		</button>
+	</form>
+</div>

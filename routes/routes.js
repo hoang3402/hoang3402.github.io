@@ -16,7 +16,7 @@ app.config(function ($routeProvider) {
 		controller: 'CategoryController',
 	});
 
-	$routeProvider.when('/anime-details/:id', {
+	$routeProvider.when('/anime-details/:animeId', {
 		templateUrl: '../views/anime-details.html',
 	});
 

@@ -56,7 +56,7 @@ app.controller(
 	'AnimeDetailsController',
 	function ($scope, $routeParams, $anchorScroll, $http) {
 		$anchorScroll();
-		$scope.id = $routeParams.id;
+		$scope.id = $routeParams.animeId;
 		$scope.showFullText = false;
 
 		$scope.toggleShowFullText = function (event) {
@@ -320,5 +320,53 @@ app.controller('profile', function ($scope, $location) {
 					});
 				},
 			);
+	};
+});
+
+app.controller('comments', function ($http, $scope, $routeParams) {
+	$scope.id = $routeParams.animeId;
+	console.log(`Running comments for ${$scope.id}`);
+
+	$http({
+		method: 'GET',
+		url: `${DOMAIN}/Anime/GetCommentsByAnime/${$scope.id}`,
+	}).then((res) => {
+		$scope.data = res.data;
+		console.log(`$scope.data:`, $scope.data);
+	});
+
+	$scope.handleCreateComment = function () {
+		const user = firebase.auth().currentUser;
+
+		if (!user) {
+			console.log('User not logged in');
+			return;
+		}
+		var username = user.displayName;
+		var comment = $('#comment_new').val();
+
+		var data = {
+			anime_id: $scope.id,
+			comment_text: comment,
+			user_name: username,
+		};
+
+		var urlEncodedData = $.param(data);
+
+		$http({
+			method: 'POST',
+			url: `${DOMAIN}/Anime/CreateComments`,
+			data: urlEncodedData,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+		})
+			.then(function (response) {
+				console.log(response.data);
+				$scope.data.push(response.data);
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
 	};
 });

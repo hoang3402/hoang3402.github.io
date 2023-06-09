@@ -187,3 +187,59 @@ app.directive('profile', function () {
 	};
 });
 
+app.directive('comments', function () {
+	return {
+		restrict: 'E',
+		templateUrl: '../components/comments/comment.html',
+		scope: {
+			animeId: '@',
+		},
+		controller: 'comments',
+	};
+});
+
+app.directive('timeAgo', function () {
+	return {
+		restrict: 'E',
+		scope: {
+			timestamp: '@',
+		},
+		template: '{{ timeAgo }}',
+		link: function (scope, element, attrs) {
+			function getTimeAgo(timestamp) {
+				var currentTime = new Date();
+				var inputTime = new Date(timestamp);
+				var timeDiff = currentTime - inputTime;
+
+				var secondsDiff = Math.floor(timeDiff / 1000);
+
+				if (secondsDiff < 60) {
+					return secondsDiff + ' giây trước';
+				}
+
+				var minutesDiff = Math.floor(secondsDiff / 60);
+
+				if (minutesDiff < 60) {
+					return minutesDiff + ' phút trước';
+				}
+
+				var hoursDiff = Math.floor(minutesDiff / 60);
+
+				if (hoursDiff < 24) {
+					return hoursDiff + ' giờ trước';
+				}
+
+				var daysDiff = Math.floor(hoursDiff / 24);
+
+				if (daysDiff < 30) {
+					return daysDiff + ' ngày trước';
+				}
+
+				var monthsDiff = Math.floor(daysDiff / 30);
+				return monthsDiff + ' tháng trước';
+			}
+
+			scope.timeAgo = getTimeAgo(scope.timestamp);
+		},
+	};
+});
