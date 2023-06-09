@@ -9,11 +9,13 @@
 
 'use strict';
 
+// https://firebase.google.com/docs/reference/js/v8
 // Config Firebase
 var firebaseConfig = {
-	apiKey: 'AIzaSyCtt-OIOhdl-F0GxAWoaxne5rnVsYaPDSg',
-	authDomain: 'anime-67796.firebaseapp.com',
-	projectId: 'anime-67796',
+    apiKey: 'AIzaSyCtt-OIOhdl-F0GxAWoaxne5rnVsYaPDSg',
+    authDomain: 'anime-67796.firebaseapp.com',
+    databaseURL: 'https://anime-67796-default-rtdb.asia-southeast1.firebasedatabase.app',
+    projectId: 'anime-67796',
 };
 
 // Khởi tạo ứng dụng Firebase

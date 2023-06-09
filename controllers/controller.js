@@ -4,8 +4,6 @@ app.controller('CheckAuth', ($scope) => {
 	(() => {
 		firebase.auth().onAuthStateChanged(function (user) {
 			if (user) {
-				// Người dùng đã đăng nhập
-				// console.log('User is logged in:', user);
 				$scope.isLogin = true;
 			} else {
 				// Người dùng chưa đăng nhập
@@ -280,6 +278,17 @@ app.controller('profile', function ($scope, $location) {
 		firebase.auth().onAuthStateChanged(function (user) {
 			$scope.$apply(function () {
 				$scope.user = user;
+			});
+
+			var databaseRef = firebase.database().ref('users');
+
+			databaseRef.child(user.uid).child('role').once('value', function (snapshot) {
+				var role = snapshot.val();
+				if (role === 'Admin') {
+					$scope.$apply(function () {
+						$scope.isAdmin = true;
+					});
+				}
 			});
 		});
 	})();
