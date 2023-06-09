@@ -340,6 +340,12 @@ app.controller('comments', function ($http, $scope, $routeParams) {
 
 		if (!user) {
 			console.log('User not logged in');
+			Swal.fire({
+				title: 'Alert',
+				text: 'You must login to comment!',
+				icon: 'error',
+				showConfirmButton: true,
+			});
 			return;
 		}
 		var username = user.displayName;
