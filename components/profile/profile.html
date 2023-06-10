@@ -43,4 +43,11 @@
 	<button class="btn btn-warning mt-3 logout-btn" ng-click="logout()">
 		Logout
 	</button>
+	<button
+		class="btn btn-success mt-3 logout-btn"
+		ng-show="isAdmin"
+		redirect="/directives/admin/index.html"
+	>
+		Admin Dashboard
+	</button>
 </div>
