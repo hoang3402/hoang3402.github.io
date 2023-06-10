@@ -282,14 +282,17 @@ app.controller('profile', function ($scope, $location) {
 
 			var databaseRef = firebase.database().ref('users');
 
-			databaseRef.child(user.uid).child('role').once('value', function (snapshot) {
-				var role = snapshot.val();
-				if (role === 'Admin') {
-					$scope.$apply(function () {
-						$scope.isAdmin = true;
-					});
-				}
-			});
+			databaseRef
+				.child(user.uid)
+				.child('role')
+				.once('value', function (snapshot) {
+					var role = snapshot.val();
+					if (role === 'Admin') {
+						$scope.$apply(function () {
+							$scope.isAdmin = true;
+						});
+					}
+				});
 		});
 	})();
 
@@ -317,11 +320,11 @@ app.controller('profile', function ($scope, $location) {
 					});
 				},
 				() => {
-					swal({
+					Swal.fire({
 						title: 'Alert',
 						text: 'Error!',
 						icon: 'error',
-						button: false,
+						showConfirmButton: true,
 					});
 
 					$scope.$apply(() => {
