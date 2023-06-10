@@ -83,10 +83,18 @@ app.directive('datatable', function ($routeParams) {
 app.directive('edittable', function () {
 	return {
 		restrict: 'E',
-		scope: {
-			data: '=',
+		templateUrl: './table/editTable.html',
+		controller: ($scope, $routeParams, $http) => {
+			console.log('EditTable');
+			$scope.nameTable = $routeParams.name;
+			$scope.id = $routeParams.id;
+			$http({
+				method: 'GET',
+				url: `${DOMAIN}/${$routeParams.name}ById/${$routeParams.id}`,
+			}).then((res) => {
+				$scope.data = res.data[0];
+			});
 		},
-		controller: ($scope, $http) => {},
 	};
 });
 
