@@ -5,10 +5,12 @@
 	<div class="card-body">
 		<div class="col-12">
 			<!-- text input -->
-			<div class="form-group" ng-repeat="(key, value) in data">
-				<label>{{key}}</label>
-				<input type="text" class="form-control" value="{{value}}" />
+			<div class="form-group" ng-repeat="item in items">
+				<label>{{ item.key }}</label>
+				<input type="text" class="form-control" ng-model="item.value" />
 			</div>
 		</div>
+		<button class="btn btn-primary" ng-click="handleSave()">Save</button>
+		<button class="btn btn-danger" ng-click="handleDelete()">Delete</button>
 	</div>
 </div>

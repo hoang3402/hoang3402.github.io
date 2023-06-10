@@ -90,10 +90,52 @@ app.directive('edittable', function () {
 			$scope.id = $routeParams.id;
 			$http({
 				method: 'GET',
-				url: `${DOMAIN}/${$routeParams.name}ById/${$routeParams.id}`,
+				url: `${DOMAIN}/${$scope.nameTable}ById/${$scope.id}`,
 			}).then((res) => {
-				$scope.data = res.data[0];
+				$scope.items = []; // Khởi tạo một mảng rỗng để lưu trữ các mục
+
+				angular.forEach(res.data[0], function (value, key) {
+					$scope.items.push({key: key, value: value});
+				});
 			});
+
+			$scope.handleSave = () => {
+				console.log('Save');
+				var data = {};
+				for (var i = 0; i < $scope.items.length; i++) {
+					var key = $scope.items[i].key;
+					var value = $scope.items[i].value;
+					data[key] = value;
+				}
+
+				var dataEncode = $.param(data);
+
+				$http({
+					method: 'POST',
+					url: `${DOMAIN}update${$scope.nameTable}/${$scope.id}`,
+					data: dataEncode,
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+					},
+				})
+					.then(function (response) {
+						console.log(`response:`, response);
+						Swal.fire({
+							title: 'Alert',
+							text: 'Success!',
+							icon: 'success',
+							showConfirmButton: true,
+						});
+					})
+					.catch(function (error) {
+						Swal.fire({
+							title: 'Alert',
+							text: 'Failed!',
+							icon: 'error',
+							showConfirmButton: true,
+						});
+					});
+			};
 		},
 	};
 });
