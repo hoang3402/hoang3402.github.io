@@ -74,3 +74,13 @@ app.directive('datatable', function ($routeParams) {
 		},
 	};
 });
+
+app.directive('editForm', () => {
+	return {
+		restrict: 'E',
+		templateUrl: './form/form.html',
+		scope: {
+			data: '=',
+		},
+	};
+});
