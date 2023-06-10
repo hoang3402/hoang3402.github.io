@@ -90,7 +90,7 @@ app.directive('edittable', function () {
 			$scope.id = $routeParams.id;
 			$http({
 				method: 'GET',
-				url: `${DOMAIN}/${$scope.nameTable}ById/${$scope.id}`,
+				url: `${DOMAIN}${$scope.nameTable}ById/${$scope.id}`,
 			}).then((res) => {
 				$scope.items = []; // Khởi tạo một mảng rỗng để lưu trữ các mục
 
@@ -135,6 +135,39 @@ app.directive('edittable', function () {
 							showConfirmButton: true,
 						});
 					});
+			};
+
+			$scope.handleDelete = () => {
+				$http({
+					method: 'POST',
+					url: `${DOMAIN}delete${$scope.nameTable}/${$scope.id}`,
+				})
+					.then(function (response) {
+						console.log(`response:`, response);
+						$scope.back();
+						Swal.fire({
+							title: 'Alert',
+							text: 'Success!',
+							icon: 'success',
+							showConfirmButton: true,
+						});
+					})
+					.catch(function (error) {
+						Swal.fire({
+							title: 'Alert',
+							text: 'Failed!',
+							icon: 'error',
+							showConfirmButton: true,
+						});
+					});
+			};
+
+			$scope.back = () => {
+				var currentUrl = window.location.href;
+				var urlParts = currentUrl.split('/');
+				urlParts.pop();
+				var newUrl = urlParts.join('/');
+				window.location.href = newUrl;
 			};
 		},
 	};
