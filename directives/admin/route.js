@@ -1,4 +1,7 @@
 app.config(function ($routeProvider) {
+	$routeProvider.when('/table/:name/:id', {
+		template: '<edittable></edittable>',
+	});
 	$routeProvider.when('/table/:name', {
 		template: '<datatable></datatable>',
 	});

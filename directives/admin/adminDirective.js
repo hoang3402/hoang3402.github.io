@@ -27,6 +27,7 @@ app.directive('datatable', function ($routeParams) {
 		restrict: 'E',
 		templateUrl: './table/table.html',
 		controller: ($scope, $http) => {
+			console.log('Datatable');
 			$scope.nameTable = $routeParams.name;
 			$http({
 				method: 'GET',
@@ -51,6 +52,10 @@ app.directive('datatable', function ($routeParams) {
 						var td = angular
 							.element('<td>')
 							.text(temp.length > 100 ? temp.substring(1, 100) + '...' : value);
+						tr.attr(
+							'onclick',
+							`handleTdClick('${$scope.nameTable}',${JSON.stringify(item)})`,
+						);
 						tr.append(td);
 					});
 					tbody.append(tr);
@@ -75,12 +80,19 @@ app.directive('datatable', function ($routeParams) {
 	};
 });
 
-app.directive('editForm', () => {
+app.directive('edittable', function () {
 	return {
 		restrict: 'E',
-		templateUrl: './form/form.html',
 		scope: {
 			data: '=',
 		},
+		controller: ($scope, $http) => {},
 	};
 });
+
+handleTdClick = (name, item) => {
+	console.log(`Edit on ${name} with ${item.id}`);
+	var currentUrl = window.location.href;
+	var newUrl = currentUrl.replace(`/${name}`, `/${name}/${item.id}`);
+	window.location.href = newUrl;
+};
