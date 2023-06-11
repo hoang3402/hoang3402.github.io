@@ -119,6 +119,23 @@ app.controller(
 			})
 				.then(function (response) {
 					console.log(response.data);
+					$scope.isFollow = true;
+					$rootScope.Success();
+				})
+				.catch(function (error) {
+					console.error(error);
+				});
+		};
+
+		$scope.handleUnFollow = function () {
+			const user = firebase.auth().currentUser;
+			$http({
+				method: 'POST',
+				url: `${DOMAIN}/Anime/UnFollowAnime/${user.uid}/${$routeParams.animeId}`,
+			})
+				.then(function (response) {
+					console.log(response.data);
+					$scope.isFollow = false;
 					$rootScope.Success();
 				})
 				.catch(function (error) {
