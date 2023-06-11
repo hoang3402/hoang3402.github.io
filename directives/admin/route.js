@@ -9,6 +9,6 @@ app.config(function ($routeProvider) {
 		template: '<create></create>',
 	});
 	$routeProvider.otherwise({
-		template: '<h1>Hello</h1>',
+		template: '<h1>Hello Admin</h1>',
 	});
 });
