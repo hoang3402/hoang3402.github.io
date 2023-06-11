@@ -65,6 +65,7 @@ app.directive('searchResult', function () {
 		restrict: 'E',
 		templateUrl: '../views/categories.html',
 		controller: function ($scope, $http, $routeParams) {
+			$scope.categoryName = `Search for ${$routeParams.query}`;
 			$http({
 				method: 'GET',
 				url: `https://hoang3409.alwaysdata.net/index.php/Anime/search/${$routeParams.query}`,

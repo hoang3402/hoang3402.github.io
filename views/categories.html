@@ -18,7 +18,10 @@
 <section class="product-page spad">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-8">
+			<div class="col-lg-8 text-center" ng-hide="data[0]">
+				<h2 style="color: white">No data</h2>
+			</div>
+			<div class="col-lg-8" ng-show="data[0]">
 				<div class="product__page__content">
 					<div class="product__page__title">
 						<div class="row">
