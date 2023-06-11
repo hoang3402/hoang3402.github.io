@@ -64,13 +64,17 @@
 						</div>
 					</div>
 				</div>
-				<div class="anime__details__btn">
-					<a href="#" class="follow-btn">
+				<div class="anime__details__btn" ng-controller="follow">
+					<a
+						href="javascript:void(0)"
+						class="follow-btn"
+						ng-click="handleFollow()"
+					>
 						<i class="fa fa-heart-o"></i>
-						Theo dõi
+						Follow
 					</a>
 					<a href="#!anime/{{id}}/episode/1" class="watch-btn">
-						<span>Xem ngay</span>
+						<span>Watch now</span>
 						<i class="fa fa-angle-right"></i>
 					</a>
 				</div>

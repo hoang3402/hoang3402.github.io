@@ -348,3 +348,32 @@ app.controller('comments', function ($http, $scope, $routeParams) {
 			});
 	};
 });
+
+app.controller('follow', ($scope, $http, $routeParams, $rootScope) => {
+	$scope.handleFollow = function () {
+		const user = firebase.auth().currentUser;
+
+		if (!user) {
+			console.log('User not logged in');
+			Swal.fire({
+				title: 'Alert',
+				text: 'You must login to follow!',
+				icon: 'error',
+				showConfirmButton: true,
+			});
+			return;
+		}
+
+		$http({
+			method: 'POST',
+			url: `${DOMAIN}/Anime/FollowAnime/${user.uid}/${$routeParams.animeId}`,
+		})
+			.then(function (response) {
+				console.log(response.data);
+				$rootScope.Success();
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
+	};
+});
