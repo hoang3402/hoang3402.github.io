@@ -37,6 +37,10 @@ app.config(function ($routeProvider) {
 		template: '<trending></trending>',
 	});
 
+	$routeProvider.when('/popular', {
+		template: '<popular></popular>',
+	});
+
 	$routeProvider.otherwise({
 		template: '<hero-slider></hero-slider> <product-section></product-section>',
 	});

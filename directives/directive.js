@@ -215,6 +215,23 @@ app.directive('trending', function () {
 	};
 });
 
+app.directive('popular', function () {
+	return {
+		restrict: 'E',
+		templateUrl: '../views/categories.html',
+		controller: function ($scope, $http) {
+			console.log('get all popular');
+			$scope.categoryName = 'popular';
+			$http({
+				method: 'GET',
+				url: `${DOMAIN}/Anime/GetListAnimePopular`,
+			}).then((res) => {
+				$scope.data = res.data;
+			});
+		},
+	};
+});
+
 app.directive('timeAgo', function () {
 	return {
 		restrict: 'E',
