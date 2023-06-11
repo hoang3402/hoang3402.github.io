@@ -198,6 +198,23 @@ app.directive('comments', function () {
 	};
 });
 
+app.directive('trending', function () {
+	return {
+		restrict: 'E',
+		templateUrl: '../views/categories.html',
+		controller: function ($scope, $http) {
+			console.log('get all trending');
+			$scope.categoryName = 'trending';
+			$http({
+				method: 'GET',
+				url: `${DOMAIN}/Anime/GetListAnimeTrending/6`,
+			}).then((res) => {
+				$scope.data = res.data;
+			});
+		},
+	};
+});
+
 app.directive('timeAgo', function () {
 	return {
 		restrict: 'E',

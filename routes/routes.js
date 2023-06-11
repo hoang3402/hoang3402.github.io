@@ -33,6 +33,10 @@ app.config(function ($routeProvider) {
 		template: '<profile></profile>',
 	});
 
+	$routeProvider.when('/trending', {
+		template: '<trending></trending>',
+	});
+
 	$routeProvider.otherwise({
 		template: '<hero-slider></hero-slider> <product-section></product-section>',
 	});
