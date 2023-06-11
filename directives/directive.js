@@ -47,6 +47,7 @@ app.directive('searchModel', function () {
 					// Check if Enter key is pressed (key code 13)
 					var searchTerm = $(this).val();
 					console.log('Search term:', searchTerm);
+					$('.search-model').fadeOut(400);
 					$scope.handleSearch();
 				}
 			});
