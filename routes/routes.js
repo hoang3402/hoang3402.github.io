@@ -41,6 +41,10 @@ app.config(function ($routeProvider) {
 		template: '<popular></popular>',
 	});
 
+	$routeProvider.when('/search/:query', {
+		template: `<search-result></search-result>`,
+	});
+
 	$routeProvider.otherwise({
 		template: '<hero-slider></hero-slider> <product-section></product-section>',
 	});

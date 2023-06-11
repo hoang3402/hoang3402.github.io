@@ -28,7 +28,7 @@ app.directive('setBg', function () {
 
 app.directive('searchModel', function () {
 	return {
-		link: function () {
+		link: function ($scope) {
 			/*------------------
                 Search model
             --------------------*/
@@ -40,6 +40,36 @@ app.directive('searchModel', function () {
 				$('.search-model').fadeOut(400, function () {
 					$('#search-input').val('');
 				});
+			});
+
+			$('#search-input').on('keydown', function (event) {
+				if (event.keyCode === 13) {
+					// Check if Enter key is pressed (key code 13)
+					var searchTerm = $(this).val();
+					console.log('Search term:', searchTerm);
+					$scope.handleSearch();
+				}
+			});
+		},
+		controller: ($http, $scope, $location) => {
+			$scope.handleSearch = () => {
+				var input = $('#search-input').val();
+				$location.path(`/search/${input}`);
+			};
+		},
+	};
+});
+
+app.directive('searchResult', function () {
+	return {
+		restrict: 'E',
+		templateUrl: '../views/categories.html',
+		controller: function ($scope, $http, $routeParams) {
+			$http({
+				method: 'GET',
+				url: `https://hoang3409.alwaysdata.net/index.php/Anime/search/${$routeParams.query}`,
+			}).then((res) => {
+				$scope.data = res.data;
 			});
 		},
 	};
