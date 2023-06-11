@@ -2,6 +2,26 @@ var app = angular.module('myApp', ['ngRoute']);
 
 const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php/Admin/';
 
+app.run(($rootScope) => {
+	$rootScope.Success = () => {
+		Swal.fire({
+			title: 'Alert',
+			text: 'Success!',
+			icon: 'success',
+			showConfirmButton: true,
+		});
+	};
+
+	$rootScope.Failed = () => {
+		Swal.fire({
+			title: 'Alert',
+			text: 'Failed!',
+			icon: 'error',
+			showConfirmButton: true,
+		});
+	};
+});
+
 app.directive('navbar', () => {
 	return {
 		restrict: 'E',
@@ -86,7 +106,7 @@ app.directive('create', () => {
 	return {
 		restrict: 'E',
 		templateUrl: './table/editTable.html',
-		controller: ($scope, $routeParams, $http) => {
+		controller: ($scope, $routeParams, $http, $rootScope) => {
 			$scope.nameTable = $routeParams.name;
 
 			$http({
@@ -121,20 +141,10 @@ app.directive('create', () => {
 				})
 					.then(function (response) {
 						console.log(`response:`, response);
-						Swal.fire({
-							title: 'Alert',
-							text: 'Success!',
-							icon: 'success',
-							showConfirmButton: true,
-						});
+						$rootScope.Success();
 					})
 					.catch(function (error) {
-						Swal.fire({
-							title: 'Alert',
-							text: 'Failed!',
-							icon: 'error',
-							showConfirmButton: true,
-						});
+						$rootScope.Failed();
 					});
 			};
 
@@ -153,7 +163,7 @@ app.directive('edittable', function () {
 	return {
 		restrict: 'E',
 		templateUrl: './table/editTable.html',
-		controller: ($scope, $routeParams, $http) => {
+		controller: ($scope, $routeParams, $http, $rootScope) => {
 			console.log('EditTable');
 			$scope.nameTable = $routeParams.name;
 			$scope.id = $routeParams.id;
@@ -190,20 +200,10 @@ app.directive('edittable', function () {
 				})
 					.then(function (response) {
 						console.log(`response:`, response);
-						Swal.fire({
-							title: 'Alert',
-							text: 'Success!',
-							icon: 'success',
-							showConfirmButton: true,
-						});
+						$rootScope.Success();
 					})
 					.catch(function (error) {
-						Swal.fire({
-							title: 'Alert',
-							text: 'Failed!',
-							icon: 'error',
-							showConfirmButton: true,
-						});
+						$rootScope.Failed();
 					});
 			};
 
@@ -215,20 +215,10 @@ app.directive('edittable', function () {
 					.then(function (response) {
 						console.log(`response:`, response);
 						$scope.back();
-						Swal.fire({
-							title: 'Alert',
-							text: 'Success!',
-							icon: 'success',
-							showConfirmButton: true,
-						});
+						$rootScope.Success();
 					})
 					.catch(function (error) {
-						Swal.fire({
-							title: 'Alert',
-							text: 'Failed!',
-							icon: 'error',
-							showConfirmButton: true,
-						});
+						$rootScope.Failed();
 					});
 			};
 

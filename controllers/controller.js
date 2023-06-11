@@ -130,27 +130,7 @@ app.controller('HeroSliderController', function ($scope, $http) {
 	});
 });
 
-app.controller('login', function ($scope, $location) {
-	$scope.alertSuccess = function () {
-		Swal.fire({
-			title: 'Alert',
-			text: 'Login success!',
-			icon: 'success',
-			showConfirmButton: false,
-			timer: 1500,
-		});
-	};
-
-	$scope.alertFailed = function () {
-		Swal.fire({
-			title: 'Alert',
-			text: 'Failed!',
-			icon: 'error',
-			showConfirmButton: false,
-			timer: 1500,
-		});
-	};
-
+app.controller('login', function ($scope, $location, $rootScope) {
 	$scope.login = function () {
 		var email = $scope.email;
 		var password = $scope.password;
@@ -162,7 +142,7 @@ app.controller('login', function ($scope, $location) {
 				var user = userCredential.user;
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
-				$scope.alertSuccess();
+				$rootScope.Success();
 
 				$scope.$apply(() => {
 					$location.path('/index');
@@ -173,7 +153,7 @@ app.controller('login', function ($scope, $location) {
 				var errorMessage = error.message;
 				console.log(`code: ${errorCode}, message: ${errorMessage}`);
 
-				$scope.alertFailed();
+				$rootScope.Failed();
 
 				$scope.$apply(() => {
 					$location.path('/login');
@@ -190,14 +170,14 @@ app.controller('login', function ($scope, $location) {
 				var user = result.user;
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
-				$scope.alertSuccess();
+				$rootScope.Success();
 
 				$scope.$apply(() => {
 					$location.path('/index');
 				});
 			})
 			.catch(function (error) {
-				$scope.alertFailed();
+				$rootScope.Failed();
 				$scope.$apply(() => {
 					$location.path('/login');
 				});
@@ -214,14 +194,14 @@ app.controller('login', function ($scope, $location) {
 				var user = result.user;
 				localStorage.setItem('user', JSON.stringify(user.displayName));
 
-				$scope.alertSuccess();
+				$rootScope.Success();
 
 				$scope.$apply(() => {
 					$location.path('/index');
 				});
 			})
 			.catch(function (error) {
-				$scope.alertFailed();
+				$rootScope.Failed();
 				$scope.$apply(() => {
 					$location.path('/login');
 				});
@@ -229,7 +209,7 @@ app.controller('login', function ($scope, $location) {
 	};
 });
 
-app.controller('register', function ($scope, $location) {
+app.controller('register', function ($scope, $location, $rootScope) {
 	$scope.register = function () {
 		var email = $scope.email;
 		var password = $scope.password;
@@ -247,6 +227,7 @@ app.controller('register', function ($scope, $location) {
 					})
 					.then(function () {
 						localStorage.setItem('user', JSON.stringify(user.displayName));
+						$rootScope.Success();
 						$scope.$apply(() => {
 							$location.path('/index');
 						});
@@ -262,18 +243,12 @@ app.controller('register', function ($scope, $location) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				console.log('Đăng ký thất bại: ', errorMessage);
-				Swal.fire({
-					title: 'Alert',
-					text: 'Failed!',
-					icon: 'error',
-					showConfirmButton: false,
-					timer: 1500,
-				});
+				$rootScope.Failed();
 			});
 	};
 });
 
-app.controller('profile', function ($scope, $location) {
+app.controller('profile', function ($scope, $location, $rootScope) {
 	(() => {
 		firebase.auth().onAuthStateChanged(function (user) {
 			$scope.$apply(function () {
@@ -303,29 +278,14 @@ app.controller('profile', function ($scope, $location) {
 			.then(
 				() => {
 					console.log('User logged out successfully.');
-					Swal.fire({
-						title: 'Alert',
-						text: 'Logout success!',
-						icon: 'success',
-						showConfirmButton: false,
-						timer: 1500,
-					});
-
-					setTimeout(function () {
-						swal.close();
-					}, 1000);
+					$rootScope.Success();
 
 					$scope.$apply(() => {
 						$location.path('/index');
 					});
 				},
 				() => {
-					Swal.fire({
-						title: 'Alert',
-						text: 'Error!',
-						icon: 'error',
-						showConfirmButton: true,
-					});
+					$rootScope.Failed();
 
 					$scope.$apply(() => {
 						$location.path('/register');
