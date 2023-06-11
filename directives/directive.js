@@ -207,8 +207,10 @@ app.directive('timeAgo', function () {
 		template: '{{ timeAgo }}',
 		link: function (scope, element, attrs) {
 			function getTimeAgo(timestamp) {
-				var currentTime = new Date();
+				var currentTime = new Date().getTime();
+				var localTimezoneOffset = new Date().getTimezoneOffset() / 60;
 				var inputTime = new Date(timestamp);
+				inputTime.setHours(inputTime.getHours() - localTimezoneOffset);
 				var timeDiff = currentTime - inputTime;
 
 				var secondsDiff = Math.floor(timeDiff / 1000);
