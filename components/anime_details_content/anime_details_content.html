@@ -64,14 +64,24 @@
 						</div>
 					</div>
 				</div>
-				<div class="anime__details__btn" ng-controller="follow">
+				<div class="anime__details__btn" ng-init="checkFollow()">
 					<a
 						href="javascript:void(0)"
 						class="follow-btn"
 						ng-click="handleFollow()"
+						ng-hide="isFollow"
 					>
 						<i class="fa fa-heart-o"></i>
 						Follow
+					</a>
+					<a
+						href="javascript:void(0)"
+						class="follow-btn"
+						ng-click="handleFollow()"
+						ng-show="isFollow"
+					>
+						<i class="fa fa-heart-o"></i>
+						Followed
 					</a>
 					<a href="#!anime/{{id}}/episode/1" class="watch-btn">
 						<span>Watch now</span>

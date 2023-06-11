@@ -52,10 +52,11 @@ app.controller('BlogDetail', function ($anchorScroll) {
 
 app.controller(
 	'AnimeDetailsController',
-	function ($scope, $routeParams, $anchorScroll, $http) {
+	function ($scope, $routeParams, $anchorScroll, $http, $rootScope) {
 		$anchorScroll();
 		$scope.id = $routeParams.animeId;
 		$scope.showFullText = false;
+		$scope.isFollow = false;
 
 		$scope.toggleShowFullText = function (event) {
 			event.preventDefault();
@@ -75,6 +76,55 @@ app.controller(
 			$scope.genres = data.genres.map((item) => item.name).join(', ');
 			$scope.vote = data.vote;
 		});
+
+		$scope.checkFollow = function () {
+			firebase.auth().onAuthStateChanged(function (user) {
+				if (!user) {
+					return;
+				}
+				$http({
+					method: 'GET',
+					url: `${DOMAIN}/Anime/IsFollowed/${user.uid}/${$routeParams.animeId}`,
+				})
+					.then(function (response) {
+						if (response.data.mes === 'true') {
+							$scope.isFollow = true;
+						} else {
+							$scope.isFollow = false;
+						}
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+			});
+		};
+
+		$scope.handleFollow = function () {
+			const user = firebase.auth().currentUser;
+
+			if (!user) {
+				console.log('User not logged in');
+				Swal.fire({
+					title: 'Alert',
+					text: 'You must login to follow!',
+					icon: 'error',
+					showConfirmButton: true,
+				});
+				return;
+			}
+
+			$http({
+				method: 'POST',
+				url: `${DOMAIN}/Anime/FollowAnime/${user.uid}/${$routeParams.animeId}`,
+			})
+				.then(function (response) {
+					console.log(response.data);
+					$rootScope.Success();
+				})
+				.catch(function (error) {
+					console.error(error);
+				});
+		};
 	},
 );
 
@@ -342,35 +392,6 @@ app.controller('comments', function ($http, $scope, $routeParams) {
 			.then(function (response) {
 				console.log(response.data);
 				$scope.data.push(response.data);
-			})
-			.catch(function (error) {
-				console.error(error);
-			});
-	};
-});
-
-app.controller('follow', ($scope, $http, $routeParams, $rootScope) => {
-	$scope.handleFollow = function () {
-		const user = firebase.auth().currentUser;
-
-		if (!user) {
-			console.log('User not logged in');
-			Swal.fire({
-				title: 'Alert',
-				text: 'You must login to follow!',
-				icon: 'error',
-				showConfirmButton: true,
-			});
-			return;
-		}
-
-		$http({
-			method: 'POST',
-			url: `${DOMAIN}/Anime/FollowAnime/${user.uid}/${$routeParams.animeId}`,
-		})
-			.then(function (response) {
-				console.log(response.data);
-				$rootScope.Success();
 			})
 			.catch(function (error) {
 				console.error(error);
