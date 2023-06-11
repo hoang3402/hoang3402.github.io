@@ -408,6 +408,7 @@ app.controller('comments', function ($http, $scope, $routeParams) {
 		})
 			.then(function (response) {
 				console.log(response.data);
+				$('#comment_new').val('');
 				$scope.data.push(response.data);
 			})
 			.catch(function (error) {
