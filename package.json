@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "angular": "^1.8.2",
-    "angular-route": "^1.8.2",
-    "sweetalert2": "^6.6.1"
+    "angular-route": "^1.8.2"
   }
 }
