@@ -18,7 +18,11 @@
 				cursor: pointer;
 			"
 		>
-			<li ng-repeat="item in $ctrl.genres" redirect="#!categories/{{item.id}}">
+			<li
+				class="mr-1"
+				ng-repeat="item in $ctrl.genres"
+				redirect="#!categories/{{item.id}}"
+			>
 				{{item.name}}
 			</li>
 		</ul>
