@@ -23,7 +23,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 /*------------------
-    Angular
+    	Angular
 --------------------*/
 var app = angular.module('myApp', ['ngRoute']);
 
@@ -45,3 +45,5 @@ app.run(($rootScope) => {
 		});
 	};
 });
+
+export {app};

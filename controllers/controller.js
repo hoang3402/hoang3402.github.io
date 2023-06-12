@@ -1,3 +1,4 @@
+import {app} from '../js/main.js';
 const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php';
 
 app.controller('CheckAuth', ($scope) => {
@@ -321,7 +322,7 @@ app.controller('profile', function ($scope, $location, $rootScope) {
 			$scope.$apply(function () {
 				$scope.user = user;
 			});
-
+			if (!user) return;
 			var databaseRef = firebase.database().ref('users');
 
 			databaseRef

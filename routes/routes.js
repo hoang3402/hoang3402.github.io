@@ -1,3 +1,4 @@
+import {app} from '../js/main.js';
 app.config(function ($routeProvider) {
 	$routeProvider.when('/login', {
 		templateUrl: '../views/login.html',

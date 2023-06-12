@@ -1,3 +1,4 @@
+import {app} from '../js/main.js';
 app.component('productItem', {
 	templateUrl: '../components/product_section/product_item.html',
 	bindings: {

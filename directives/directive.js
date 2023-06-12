@@ -1,3 +1,5 @@
+import {app} from '../js/main.js';
+
 app.directive('preLoader', function () {
 	return {
 		link: () => {
