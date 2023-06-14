@@ -1,39 +1,37 @@
-import {app} from '../js/main.js';
-
-app.directive('preLoader', function () {
+export function preLoader() {
 	return {
 		link: () => {
 			/*------------------
-                Preloader
-            --------------------*/
+				Preloader
+			--------------------*/
 			$(window).ready(function () {
 				$('.loader').fadeOut();
 				$('#preloder').delay(200).fadeOut('slow');
 			});
 		},
 	};
-});
+}
 
-app.directive('setBg', function () {
+export function setBg() {
 	return {
 		link: function () {
 			/*------------------
-                Background Set
-            --------------------*/
+				Background Set
+			--------------------*/
 			$('.set-bg').each(function () {
 				var bg = $(this).data('setbg');
 				$(this).css('background-image', 'url(' + bg + ')');
 			});
 		},
 	};
-});
+}
 
-app.directive('searchModel', function () {
+export function searchModel() {
 	return {
 		link: function ($scope) {
 			/*------------------
-                Search model
-            --------------------*/
+				Search model
+			--------------------*/
 			$('.search-switch').on('click', function () {
 				$('.search-model').fadeIn(400);
 			});
@@ -61,9 +59,9 @@ app.directive('searchModel', function () {
 			};
 		},
 	};
-});
+}
 
-app.directive('searchResult', function () {
+export function searchResult() {
 	return {
 		restrict: 'E',
 		templateUrl: '../views/categories.html',
@@ -77,25 +75,25 @@ app.directive('searchResult', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('niceSelect', function () {
+export function niceSelect() {
 	return {
 		link: () => {
 			/*------------------
-                Niceselect
-            --------------------*/
+				Niceselect
+			--------------------*/
 			$('select').niceSelect();
 		},
 	};
-});
+}
 
-app.directive('scrollToTop', function () {
+export function scrollToTop() {
 	return {
 		link: () => {
 			/*------------------
-                Scroll To Top
-            --------------------*/
+				Scroll To Top
+			--------------------*/
 			$('#scrollToTopButton').click(function () {
 				$('html, body').animate(
 					{
@@ -107,14 +105,14 @@ app.directive('scrollToTop', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('filter', function () {
+export function filter() {
 	return {
 		link: () => {
 			/*------------------
-                    Filter
-            --------------------*/
+					Filter
+			--------------------*/
 			$('.filter__controls li').on('click', function () {
 				$('.filter__controls li').removeClass('active');
 				$(this).addClass('active');
@@ -125,14 +123,14 @@ app.directive('filter', function () {
 			}
 		},
 	};
-});
+}
 
-app.directive('navigation', function () {
+export function navigation() {
 	return {
 		link: () => {
 			/*------------------
-                Navigation
-            --------------------*/
+				Navigation
+			--------------------*/
 			$('.mobile-menu').slicknav({
 				prependTo: '#mobile-menu-wrap',
 				allowParentLinks: true,
@@ -149,14 +147,14 @@ app.directive('navigation', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('heroSlider', function () {
+export function heroSlider() {
 	return {
 		link: () => {
 			/*------------------
-                Hero Slider
-            --------------------*/
+				Hero Slider
+			--------------------*/
 			var hero_s = $('.hero__slider');
 			hero_s.owlCarousel({
 				loop: true,
@@ -177,14 +175,14 @@ app.directive('heroSlider', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('videoPlayer', function () {
+export function videoPlayer() {
 	return {
 		link: () => {
 			/*------------------
-                Video Player
-            --------------------*/
+				Video Player
+			--------------------*/
 			const player = new Plyr('#player', {
 				controls: [
 					'play-large',
@@ -200,9 +198,9 @@ app.directive('videoPlayer', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('redirect', function () {
+export function redirect() {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -211,17 +209,17 @@ app.directive('redirect', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('profile', function () {
+export function profile() {
 	return {
 		restrict: 'E',
 		templateUrl: '../components/profile/profile.html',
 		controller: 'profile',
 	};
-});
+}
 
-app.directive('comments', function () {
+export function comments() {
 	return {
 		restrict: 'E',
 		templateUrl: '../components/comments/comment.html',
@@ -230,9 +228,9 @@ app.directive('comments', function () {
 		},
 		controller: 'comments',
 	};
-});
+}
 
-app.directive('trending', function () {
+export function trending() {
 	return {
 		restrict: 'E',
 		templateUrl: '../views/categories.html',
@@ -247,9 +245,9 @@ app.directive('trending', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('popular', function () {
+export function popular() {
 	return {
 		restrict: 'E',
 		templateUrl: '../views/categories.html',
@@ -264,9 +262,9 @@ app.directive('popular', function () {
 			});
 		},
 	};
-});
+}
 
-app.directive('timeAgo', function () {
+export function timeAgo() {
 	return {
 		restrict: 'E',
 		scope: {
@@ -312,4 +310,4 @@ app.directive('timeAgo', function () {
 			scope.timeAgo = getTimeAgo(scope.timestamp);
 		},
 	};
-});
+}
