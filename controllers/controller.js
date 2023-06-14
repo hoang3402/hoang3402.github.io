@@ -33,14 +33,12 @@ export function GetListAnimePopular($scope, $http) {
 }
 
 export function GetGenres($scope, $http) {
-	console.log("GetGenres load");
 	$http({
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetGenres`,
 	}).then(
 		(res) => {
 			$scope.genres = res.data;
-			console.log("GetGenres:", res)
 		},
 		(res) => {
 			console.log('Failed: ', res.data);

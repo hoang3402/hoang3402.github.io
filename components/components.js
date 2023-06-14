@@ -1,129 +1,108 @@
-export function productItem() {
-	return {
-		templateUrl: '../components/product_section/product_item.html',
-		bindings: {
-			id: '@',
-			name: '@',
-			url: '@',
-			comment: '@',
-			views: '@',
-			genres: '<',
-		},
-	}
+export const productItem = {
+	templateUrl: '../components/product_section/product_item.html',
+	bindings: {
+		id: '@',
+		name: '@',
+		url: '@',
+		comment: '@',
+		views: '@',
+		genres: '<',
+	},
 }
-export function viewItem() {
-	return {
-		templateUrl: '../components/anime_top_views/view_item.html',
-		bindings: {
-			id: '@',
-			name: '@',
-			url: '@',
-			views: '@',
-		},
-	}
+
+export const viewItem = {
+	templateUrl: '../components/anime_top_views/view_item.html',
+	bindings: {
+		id: '@',
+		name: '@',
+		url: '@',
+		views: '@',
+	},
 }
-export function headerCustoms() {
-	return {
-		templateUrl: '../components/header/header.html',
-		controller: 'GetGenres',
-		bindings: {
-			name: '@',
-			url: '@',
-		},
-		controller: () => {
-			console.log("headerCustoms load");
-		}
-	}
-}
-export function heroSlider() {
-	return {
-		templateUrl: '../components/hero_slider/hero_slider.html',
-		bindings: {
-			name: '@',
-			url: '@',
-		},
-	}
-}
-export function productSection() {
-	return {
-		templateUrl: '../components/product_section/product_section.html',
-	}
-}
-export function animeDetailsEpisode() {
-	return {
-		templateUrl:
-			'../components/anime__details__episodes/anime_details_episodes.html',
-		bindings: {
-			listEp: '@',
-		},
+
+export const headerCustoms = {
+	templateUrl: '../components/header/header.html',
+	controller: 'GetGenres',
+	bindings: {
+		name: '@',
+		url: '@',
 	}
 }
 
-export function footerCustoms() {
-	return {
-		templateUrl: '../components/footer/footer.html',
-	}
+export const heroSlider = {
+	templateUrl: '../components/hero_slider/hero_slider.html',
+	bindings: {
+		name: '@',
+		url: '@',
+	},
 }
-export function search() {
-	return {
-		templateUrl: '../components/search/search.html',
-	}
+
+export const productSection = {
+	templateUrl: '../components/product_section/product_section.html',
 }
-export function breadcrumb() {
-	return {
-		templateUrl: '../components/breadcrumb/breadcrumb.html',
-	}
+
+export const animeDetailsEpisode = {
+	templateUrl:
+		'../components/anime__details__episodes/anime_details_episodes.html',
+	bindings: {
+		listEp: '@',
+	},
 }
-export function animeDetailsContent() {
-	return {
-		templateUrl: '../components/anime_details_content/anime_details_content.html',
-	}
+
+
+export const footerCustoms = {
+	templateUrl: '../components/footer/footer.html',
 }
-export function animeTopViews() {
-	return {
-		templateUrl: '../components/anime_top_views/anime_top_views.html',
-	}
+
+export const search = {
+	templateUrl: '../components/search/search.html',
 }
-export function heroItem() {
-	return {
-		templateUrl: '../components/hero_slider/hero_items.html',
-		bindings: {
-			idMovie: '@',
-			name: '@',
-			linkImage: '@',
-			description: '@',
-		},
-	}
+
+export const breadcrumb = {
+	templateUrl: '../components/breadcrumb/breadcrumb.html',
 }
-export function trendingProduct() {
-	return {
-		templateUrl: '../components/product_section/trending_product.html',
-		controller: 'GetListAnimeTrending',
-	}
+
+export const animeDetailsContent = {
+	templateUrl: '../components/anime_details_content/anime_details_content.html',
 }
-export function liveProduct() {
-	return {
-		templateUrl: '../components/product_section/live_product.html',
-	}
+
+export const animeTopViews = {
+	templateUrl: '../components/anime_top_views/anime_top_views.html',
 }
-export function recentProduct() {
-	return {
-		templateUrl: '../components/product_section/recent_product.html',
-	}
+
+export const heroItem = {
+	templateUrl: '../components/hero_slider/hero_items.html',
+	bindings: {
+		idMovie: '@',
+		name: '@',
+		linkImage: '@',
+		description: '@',
+	},
 }
-export function popularProduct() {
-	return {
-		templateUrl: '../components/product_section/popular_product.html',
-		controller: 'GetListAnimePopular',
-	}
+
+export const trendingProduct = {
+	templateUrl: '../components/product_section/trending_product.html',
+	controller: 'GetListAnimeTrending',
 }
-export function productSidebar() {
-	return {
-		templateUrl: '../components/product_section/product_sidebar.html',
-	}
+
+export const liveProduct = {
+	templateUrl: '../components/product_section/live_product.html',
 }
-export function productSidebarComment() {
-	return {
-		templateUrl: '../components/product_section/product_sidebar_comment.html',
-	}
+
+export const recentProduct = {
+	templateUrl: '../components/product_section/recent_product.html',
 }
+
+export const popularProduct = {
+	templateUrl: '../components/product_section/popular_product.html',
+	controller: 'GetListAnimePopular',
+}
+
+export const productSidebar = {
+	templateUrl: '../components/product_section/product_sidebar.html',
+}
+
+export const productSidebarComment = {
+	templateUrl: '../components/product_section/product_sidebar_comment.html',
+}
+

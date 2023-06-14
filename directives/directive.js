@@ -1,7 +1,6 @@
 export function preLoader() {
 	return {
 		link: () => {
-			console.log("preLoader load");
 			/*------------------
 				Preloader
 			--------------------*/
@@ -16,7 +15,6 @@ export function preLoader() {
 export function setBg() {
 	return {
 		link: function () {
-			console.log("setBg load");
 			/*------------------
 				Background Set
 			--------------------*/
@@ -130,7 +128,6 @@ export function filter() {
 export function navigation() {
 	return {
 		link: () => {
-			console.log("Load Navigation:")
 			/*------------------
 				Navigation
 			--------------------*/
