@@ -1,7 +1,6 @@
-import {app} from '../js/main.js';
 const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php';
 
-app.controller('CheckAuth', ($scope) => {
+export function CheckAuth($scope) {
 	(() => {
 		firebase.auth().onAuthStateChanged(function (user) {
 			if (user) {
@@ -13,192 +12,185 @@ app.controller('CheckAuth', ($scope) => {
 			}
 		});
 	})();
-});
+}
 
-app.controller('GetListAnimeTrending', function ($scope, $http) {
+export function GetListAnimeTrending($scope, $http) {
 	$http({
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetListAnimeTrending/6`,
 	}).then((res) => {
 		$scope.list = res.data.slice(0, 6);
 	});
-});
+}
 
-app.controller('GetListAnimePopular', function ($scope, $http) {
+export function GetListAnimePopular($scope, $http) {
 	$http({
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetListAnimePopular`,
 	}).then((res) => {
 		$scope.list = res.data.slice(0, 6);
 	});
-});
+}
 
-app.controller('GetGenres', function ($scope, $http) {
+export function GetGenres($scope, $http) {
+	console.log("GetGenres load");
 	$http({
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetGenres`,
 	}).then(
 		(res) => {
 			$scope.genres = res.data;
+			console.log("GetGenres:", res)
 		},
 		(res) => {
 			console.log('Failed: ', res.data);
 		},
 	);
-});
+}
 
-app.controller('BlogDetail', function ($anchorScroll) {
+export function BlogDetail($anchorScroll) {
 	$anchorScroll();
-});
+}
 
-app.controller(
-	'AnimeDetailsController',
-	function ($scope, $routeParams, $anchorScroll, $http, $rootScope) {
-		$anchorScroll();
-		$scope.id = $routeParams.animeId;
-		$scope.showFullText = false;
-		$scope.isFollow = false;
+export function AnimeDetailsController($scope, $routeParams, $anchorScroll, $http, $rootScope) {
+	$anchorScroll();
+	$scope.id = $routeParams.animeId;
+	$scope.showFullText = false;
+	$scope.isFollow = false;
 
-		$scope.toggleShowFullText = function (event) {
-			event.preventDefault();
-			$scope.showFullText = !$scope.showFullText;
-		};
+	$scope.toggleShowFullText = function (event) {
+		event.preventDefault();
+		$scope.showFullText = !$scope.showFullText;
+	};
 
-		$http({
-			method: 'GET',
-			url: `${DOMAIN}/Anime/GetAnimeById/${$scope.id}`,
-		}).then((res) => {
-			var data = res.data;
-			$scope.title = data.title;
-			$scope.linkImage = data.cover_image_url;
-			$scope.descriptionShort = data.description.substring(0, 250);
-			$scope.description = data.description;
-			$scope.views = data.views;
-			$scope.genres = data.genres.map((item) => item.name).join(', ');
-			$scope.vote = data.vote;
-		});
+	$http({
+		method: 'GET',
+		url: `${DOMAIN}/Anime/GetAnimeById/${$scope.id}`,
+	}).then((res) => {
+		var data = res.data;
+		$scope.title = data.title;
+		$scope.linkImage = data.cover_image_url;
+		$scope.descriptionShort = data.description.substring(0, 250);
+		$scope.description = data.description;
+		$scope.views = data.views;
+		$scope.genres = data.genres.map((item) => item.name).join(', ');
+		$scope.vote = data.vote;
+	});
 
-		$scope.checkFollow = function () {
-			firebase.auth().onAuthStateChanged(function (user) {
-				if (!user) {
-					return;
-				}
-				$http({
-					method: 'GET',
-					url: `${DOMAIN}/Anime/IsFollowed/${user.uid}/${$routeParams.animeId}`,
-				})
-					.then(function (response) {
-						if (response.data.mes === 'true') {
-							$scope.isFollow = true;
-						} else {
-							$scope.isFollow = false;
-						}
-					})
-					.catch(function (error) {
-						console.log(error);
-					});
-			});
-		};
-
-		$scope.handleFollow = function () {
-			const user = firebase.auth().currentUser;
-
+	$scope.checkFollow = function () {
+		firebase.auth().onAuthStateChanged(function (user) {
 			if (!user) {
-				console.log('User not logged in');
-				Swal.fire({
-					title: 'Alert',
-					text: 'You must login to follow!',
-					icon: 'error',
-					showConfirmButton: true,
-				});
 				return;
 			}
-
 			$http({
-				method: 'POST',
-				url: `${DOMAIN}/Anime/FollowAnime/${user.uid}/${$routeParams.animeId}`,
+				method: 'GET',
+				url: `${DOMAIN}/Anime/IsFollowed/${user.uid}/${$routeParams.animeId}`,
 			})
 				.then(function (response) {
-					console.log(response.data);
-					$scope.isFollow = true;
-					$rootScope.Success();
+					if (response.data.mes === 'true') {
+						$scope.isFollow = true;
+					} else {
+						$scope.isFollow = false;
+					}
 				})
 				.catch(function (error) {
-					console.error(error);
+					console.log(error);
 				});
-		};
+		});
+	};
 
-		$scope.handleUnFollow = function () {
-			const user = firebase.auth().currentUser;
-			$http({
-				method: 'POST',
-				url: `${DOMAIN}/Anime/UnFollowAnime/${user.uid}/${$routeParams.animeId}`,
+	$scope.handleFollow = function () {
+		const user = firebase.auth().currentUser;
+
+		if (!user) {
+			console.log('User not logged in');
+			Swal.fire({
+				title: 'Alert',
+				text: 'You must login to follow!',
+				icon: 'error',
+				showConfirmButton: true,
+			});
+			return;
+		}
+
+		$http({
+			method: 'POST',
+			url: `${DOMAIN}/Anime/FollowAnime/${user.uid}/${$routeParams.animeId}`,
+		})
+			.then(function (response) {
+				console.log(response.data);
+				$scope.isFollow = true;
+				$rootScope.Success();
 			})
-				.then(function (response) {
-					console.log(response.data);
-					$scope.isFollow = false;
-					$rootScope.Success();
-				})
-				.catch(function (error) {
-					console.error(error);
-				});
-		};
-	},
-);
+			.catch(function (error) {
+				console.error(error);
+			});
+	};
 
-app.controller(
-	'AnimeWatchingController',
-	function ($scope, $routeParams, $anchorScroll, $http) {
-		$anchorScroll();
-		$scope.animeId = $routeParams.animeId;
-		$scope.Id = $routeParams.id;
-
+	$scope.handleUnFollow = function () {
+		const user = firebase.auth().currentUser;
 		$http({
-			method: 'GET',
-			url: `${DOMAIN}/Anime/GetMovies/${$scope.animeId}`,
-		}).then((res) => {
-			$scope.data = res.data;
-			$scope.url = $scope.data[0].URLs[0].url;
-		});
+			method: 'POST',
+			url: `${DOMAIN}/Anime/UnFollowAnime/${user.uid}/${$routeParams.animeId}`,
+		})
+			.then(function (response) {
+				console.log(response.data);
+				$scope.isFollow = false;
+				$rootScope.Success();
+			})
+			.catch(function (error) {
+				console.error(error);
+			});
+	};
+}
 
-		$scope.isManyQuality = function (id) {
-			if (typeof id == 'undefined' || typeof $scope.data == 'undefined') {
-				return;
-			}
-			return $scope.data[id - 1].URLs.length > 1;
-		};
+export function AnimeWatchingController($scope, $routeParams, $anchorScroll, $http) {
+	$anchorScroll();
+	$scope.animeId = $routeParams.animeId;
+	$scope.Id = $routeParams.id;
 
-		$scope.handleChangeQuality = function (url) {
-			$scope.url = url;
-		};
-	},
-);
+	$http({
+		method: 'GET',
+		url: `${DOMAIN}/Anime/GetMovies/${$scope.animeId}`,
+	}).then((res) => {
+		$scope.data = res.data;
+		$scope.url = $scope.data[0].URLs[0].url;
+	});
 
-app.controller(
-	'CategoryController',
-	function ($scope, $routeParams, $anchorScroll, $http) {
-		$anchorScroll();
-		$http({
-			method: 'GET',
-			url: `${DOMAIN}/Anime/GetMoviesByCategory/${$routeParams.id}/18`,
-		}).then((res) => {
-			$scope.data = res.data;
-			console.log(`$scope.data:`, $scope.data);
-			$scope.categoryName = res.data[0].name;
-		});
-	},
-);
+	$scope.isManyQuality = function (id) {
+		if (typeof id == 'undefined' || typeof $scope.data == 'undefined') {
+			return;
+		}
+		return $scope.data[id - 1].URLs.length > 1;
+	};
 
-app.controller('HeroSliderController', function ($scope, $http) {
+	$scope.handleChangeQuality = function (url) {
+		$scope.url = url;
+	};
+}
+
+export function CategoryController($scope, $routeParams, $anchorScroll, $http) {
+	$anchorScroll();
+	$http({
+		method: 'GET',
+		url: `${DOMAIN}/Anime/GetMoviesByCategory/${$routeParams.id}/18`,
+	}).then((res) => {
+		$scope.data = res.data;
+		console.log(`$scope.data:`, $scope.data);
+		$scope.categoryName = res.data[0].name;
+	});
+}
+
+export function HeroSliderController($scope, $http) {
 	$http({
 		method: 'GET',
 		url: `${DOMAIN}/Anime/GetListAnimeTrending/3`,
 	}).then((res) => {
 		$scope.data = res.data;
 	});
-});
+}
 
-app.controller('login', function ($scope, $location, $rootScope) {
+export function login($scope, $location, $rootScope) {
 	$scope.login = function () {
 		var email = $scope.email;
 		var password = $scope.password;
@@ -275,9 +267,9 @@ app.controller('login', function ($scope, $location, $rootScope) {
 				});
 			});
 	};
-});
+}
 
-app.controller('register', function ($scope, $location, $rootScope) {
+export function register($scope, $location, $rootScope) {
 	$scope.register = function () {
 		var email = $scope.email;
 		var password = $scope.password;
@@ -314,9 +306,9 @@ app.controller('register', function ($scope, $location, $rootScope) {
 				$rootScope.Failed();
 			});
 	};
-});
+}
 
-app.controller('profile', function ($scope, $location, $rootScope) {
+export function profile($scope, $location, $rootScope) {
 	(() => {
 		firebase.auth().onAuthStateChanged(function (user) {
 			$scope.$apply(function () {
@@ -361,9 +353,9 @@ app.controller('profile', function ($scope, $location, $rootScope) {
 				},
 			);
 	};
-});
+}
 
-app.controller('comments', function ($http, $scope, $routeParams) {
+export function comments($http, $scope, $routeParams) {
 	$scope.id = $routeParams.animeId;
 	console.log(`Running comments for ${$scope.id}`);
 
@@ -416,4 +408,4 @@ app.controller('comments', function ($http, $scope, $routeParams) {
 				console.error(error);
 			});
 	};
-});
+}
