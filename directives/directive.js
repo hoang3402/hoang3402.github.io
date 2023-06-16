@@ -264,6 +264,21 @@ export function popular() {
 	};
 }
 
+export function vote() {
+	return {
+		restrict: 'E',
+		scope: {
+			currentvote: '=',
+		},
+		templateUrl: '../components/vote/vote.html',
+		controller: ($scope) => {
+			$scope.vote = () => {
+				console.log(`vote ~ $scope.currentvote:`, $scope.currentvote);
+			};
+		},
+	};
+}
+
 export function timeAgo() {
 	return {
 		restrict: 'E',
