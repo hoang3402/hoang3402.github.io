@@ -21,16 +21,7 @@
 					<h3>{{title}}</h3>
 					<!-- <span> フェイト／ステイナイト, Feito/sutei naito </span> -->
 				</div>
-				<div class="anime__details__rating">
-					<div class="rating">
-						<a href="#"><i class="fa fa-star"></i></a>
-						<a href="#"><i class="fa fa-star"></i></a>
-						<a href="#"><i class="fa fa-star"></i></a>
-						<a href="#"><i class="fa fa-star"></i></a>
-						<a href="#"><i class="fa fa-star-half-o"></i></a>
-					</div>
-					<span>{{vote}} Votes</span>
-				</div>
+				<vote currentvote="vote"></vote>
 				<div class="description">
 					<p ng-hide="showFullText">{{ descriptionShort }}...</p>
 					<p ng-show="showFullText">{{ description }}</p>

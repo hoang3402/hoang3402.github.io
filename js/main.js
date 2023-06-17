@@ -10,7 +10,7 @@
 'use strict';
 import 'angular';
 import 'angular-route';
-import * as component from '../components/components'
+import * as component from '../components/components';
 import * as directive from '../directives/directive';
 import * as controller from '../controllers/controller';
 
@@ -73,6 +73,7 @@ app.directive('timeAgo', directive.timeAgo);
 app.directive('redirect', directive.redirect);
 app.directive('videoPlayer', directive.videoPlayer);
 app.directive('comments', directive.comments);
+app.directive('vote', directive.vote);
 
 app.controller('CheckAuth', controller.CheckAuth);
 app.controller('HeroSliderController', controller.HeroSliderController);

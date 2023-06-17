@@ -1,3 +1,5 @@
+const DOMAIN = 'https://hoang3409.alwaysdata.net/index.php';
+
 export function preLoader() {
 	return {
 		link: () => {
@@ -260,6 +262,57 @@ export function popular() {
 			}).then((res) => {
 				$scope.data = res.data;
 			});
+		},
+	};
+}
+
+export function vote() {
+	return {
+		restrict: 'E',
+		scope: {
+			currentvote: '=',
+		},
+		templateUrl: '../components/vote/vote.html',
+		controller: ($scope, $rootScope, $routeParams, $http) => {
+			var animeId = $routeParams.animeId;
+
+			$scope.upvote = (score) => {
+				firebase.auth().onAuthStateChanged(function (user) {
+					if (!user) {
+						console.log('User not logged in');
+						Swal.fire({
+							title: 'Alert',
+							text: 'You must login to follow!',
+							icon: 'error',
+							showConfirmButton: true,
+						});
+						return;
+					}
+					console.log(`score ${score} for ${animeId}`);
+					var data = {
+						animeId: animeId,
+						uid: user.uid,
+						vote: score,
+					};
+					$http({
+						method: 'POST',
+						url: `${DOMAIN}/Anime/UpVoteAnime`,
+						data: $.param(data),
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+					}).then(
+						(res) => {
+							console.log(res.data);
+							$scope.currentvote++;
+							$rootScope.Success();
+						},
+						(res) => {
+							$rootScope.Failed();
+						},
+					);
+				});
+			};
 		},
 	};
 }
