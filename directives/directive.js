@@ -304,7 +304,9 @@ export function vote() {
 					}).then(
 						(res) => {
 							console.log(res.data);
-							$scope.currentvote++;
+							if (res.data.action === 'new_follow') {
+								$scope.currentvote++;
+							}
 							$rootScope.Success();
 						},
 						(res) => {
