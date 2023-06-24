@@ -50,7 +50,13 @@ export function BlogDetail($anchorScroll) {
 	$anchorScroll();
 }
 
-export function AnimeDetailsController($scope, $routeParams, $anchorScroll, $http, $rootScope) {
+export function AnimeDetailsController(
+	$scope,
+	$routeParams,
+	$anchorScroll,
+	$http,
+	$rootScope,
+) {
 	$anchorScroll();
 	$scope.id = $routeParams.animeId;
 	$scope.showFullText = false;
@@ -142,7 +148,12 @@ export function AnimeDetailsController($scope, $routeParams, $anchorScroll, $htt
 	};
 }
 
-export function AnimeWatchingController($scope, $routeParams, $anchorScroll, $http) {
+export function AnimeWatchingController(
+	$scope,
+	$routeParams,
+	$anchorScroll,
+	$http,
+) {
 	$anchorScroll();
 	$scope.animeId = $routeParams.animeId;
 	$scope.Id = $routeParams.id;
@@ -298,10 +309,15 @@ export function register($scope, $location, $rootScope) {
 					});
 			})
 			.catch(function (error) {
-				var errorCode = error.code;
+				console.log(error.message);
 				var errorMessage = error.message;
-				console.log('Đăng ký thất bại: ', errorMessage);
-				$rootScope.Failed();
+				errorMessage = errorMessage.replace('Firebase: ', '');
+				Swal.fire({
+					title: 'Alert',
+					text: errorMessage,
+					icon: 'error',
+					showConfirmButton: true,
+				});
 			});
 	};
 }
